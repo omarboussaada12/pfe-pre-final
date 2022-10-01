@@ -66,6 +66,11 @@ export class UserService {
       .delete<User>(this.endpoint + '/delete-Offer/' + id, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
+  getUsersAdmin(): Observable<User> {
+    return this.httpClient
+      .get<User>(this.endpoint + '/get-user-admin')
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Offer } from '../_model/Offer';
+import { OfferService } from '../_services/offer.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
     selector: 'app-landing',
@@ -9,9 +12,23 @@ import { Component, OnInit } from '@angular/core';
 export class LandingComponent implements OnInit {
   focus: any;
   focus1: any;
+  offers? :any = [Offer];
+  users? :any ;
+  constructor(private offerService: OfferService , private userService : UserService) {}
 
-  constructor() { }
+  ngOnInit(): void {
+    this.fetchlistoffer();
+    this.fetchlistAdmin();
+  }
 
-  ngOnInit() {}
-
+  fetchlistoffer() {
+    return this.offerService.getOffers().subscribe((res: {}) => {
+      this.offers = res;
+    });
+  }
+  fetchlistAdmin() {
+    return this.userService.getUsersAdmin().subscribe((res: {}) => {
+      this.users = res;
+    });
+  }
 }

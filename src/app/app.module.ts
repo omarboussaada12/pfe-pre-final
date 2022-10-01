@@ -17,6 +17,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { UserComponent } from './admin/user/user.component';
+import { OfferComponent } from './admin/offer/offer.component';
+import { CommandeComponent } from './admin/commande/commande.component';
+import { EditComponent } from './admin/commande/edit/edit.component';
+import { AddComponent } from './admin/commande/add/add.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    OfferComponent,
+    CommandeComponent,
+    EditComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,

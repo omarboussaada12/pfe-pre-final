@@ -14,30 +14,29 @@
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card bg-secondary shadow border-0">
+           
             <div class="card-header bg-white pb-5">
               <div class="text-muted text-center mb-3">
-                <small>Sign in with</small>
+              
               </div>
               <div class="btn-wrapper text-center">
-                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+                <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 200px;">
+                <!-- <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon">
-                    <img src="./assets/img/icons/common/github.svg">
+                   
                   </span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon">
-                    <img src="./assets/img/icons/common/google.svg">
+                  <span class="btn-inner--text">
+                    
                   </span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
+                </a> -->
+                
               </div>
-            </div>
+            </div> 
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
                 <small>Or sign in with credentials</small>
               </div>
-              <!-- <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+               <!-- <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -82,53 +81,33 @@
                     Login failed: {{ errorMessage }}
                   </div>
                 </div>
-              </form> -->
-              <form
-              *ngIf="!isLoggedIn"
-              name="form"
-              (ngSubmit)="f.form.valid && onSubmit()"
-              #f="ngForm"
-              novalidate
-            >
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  [(ngModel)]="form.username"
-                  required
-                  #username="ngModel"
-                />
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="username.errors && f.submitted"
-                >
+              </form>  -->
+            <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input  placeholder="username" type="text" class="form-control" name="username" [(ngModel)]="form.username" required #username="ngModel" />
+                <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
                   Username is required!
                 </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  [(ngModel)]="form.password"
-                  required
-                  minlength="6"
-                  #password="ngModel"
-                />
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="password.errors && f.submitted"
-                >
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input placeholder="password" type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+                  #password="ngModel" />
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
                   <div *ngIf="password.errors.required">Password is required</div>
                   <div *ngIf="password.errors.minlength">
                     Password must be at least 6 characters
                   </div>
                 </div>
+              </div>
               </div>
               <div class="form-group">
                 <button class="btn btn-primary btn-block">
@@ -136,11 +115,7 @@
                 </button>
               </div>
               <div class="form-group">
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="f.submitted && isLoginFailed"
-                >
+                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
                   Login failed: {{ errorMessage }}
                 </div>
               </div>
