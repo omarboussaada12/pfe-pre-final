@@ -26,7 +26,7 @@
       </div>
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['/landing']">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['landing']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Home</span>
           </a>
@@ -62,22 +62,41 @@
             </div>
           </div> -->
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button"  [routerLink]="['/login']">
+        <li class="nav-item dropdown" *ngIf="!isLoggedIn">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button"  [routerLink]="['login']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Login</span>
           </a>
           </li>
-            <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['/register']">
+            <li class="nav-item dropdown" *ngIf="!isLoggedIn">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['register']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Register</span>
           </a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['/user-profile']">
+          <li class="nav-item dropdown" *ngIf="showAdminBoard">
+            <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['admin/user']">
+              <i class="ni ni-ui-04 d-lg-none"></i>
+              <span class="nav-link-inner--text">gestion d'utilisateur</span>
+            </a>
+            </li>
+            <li class="nav-item dropdown" *ngIf="showAdminBoard">
+              <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['admin/commande']">
+                <i class="ni ni-ui-04 d-lg-none"></i>
+                <span class="nav-link-inner--text">gestion de commande</span>
+              </a>
+              </li>
+          <li class="nav-item dropdown" *ngIf="isLoggedIn">
+            <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user-profile']">
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Profile</span>
+            
+            </a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="isLoggedIn">
+            <a class="nav-link no-caret" data-toggle="dropdown" role="button" >
+              <i class="ni ni-ui-04 d-lg-none"></i>
+              <span class="nav-link-inner--text" (click)="logout()">logout</span>
             
             </a>
           </li>

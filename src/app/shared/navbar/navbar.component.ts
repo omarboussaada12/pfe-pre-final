@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { timeStamp } from 'console';
 
 @Component({
     selector: 'app-navbar',
@@ -11,11 +13,33 @@ export class NavbarComponent implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    title(title: any) {
+        throw new Error('Method not implemented.');
+      }
+      private roles: string[] = [];
+      isLoggedIn = false;
+      showAdminBoard = false;
+      showModeratorBoard = false;
+      username?: string;
+    
 
-    constructor(public location: Location, private router: Router) {
+    constructor(public location: Location, private router: Router ,private tokenStorageService: TokenStorageService) {
     }
 
     ngOnInit() {
+        
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_CLIENT');
+      this.username = user.username;
+    }
+   
+  
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
         if (event instanceof NavigationStart) {
@@ -33,6 +57,11 @@ export class NavbarComponent implements OnInit {
          this.lastPoppedUrl = ev.url;
      });
     }
+    logout(): void {
+        this.tokenStorageService.signOut();
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        window.location.reload();
+      }
 
     isHome() {
         var titlee = this.location.prepareExternalUrl(this.location.path());

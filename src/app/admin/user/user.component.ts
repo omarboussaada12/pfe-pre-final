@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
       err => {
         this.content = JSON.parse(err.error).message;
         this.show=false;
-        this.router.navigate(['/home'])
+        this.router.navigate(['/landing'])
       }
     );
   }
