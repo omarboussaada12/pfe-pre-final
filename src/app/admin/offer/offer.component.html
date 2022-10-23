@@ -1,1 +1,50 @@
-<p>offer works!</p>
+
+<div class="container">
+    <header class="jumbotron">
+      
+    </header>
+    <div>
+        <button class="btn btn-1 btn-info" type="button"  placement="top"    ngbTooltip="add new offer">ADD</button> 
+        <br>
+        <br>
+      <div class="table-responsive-md">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="row">#</th>
+              <th scope="col">image</th>
+              <th scope="col">name</th>
+              <th scope="col">description</th>
+              <th scope="col">prix par unit</th>
+              
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let offer of offers ; index as i">
+              <td>{{i+1}}</td>
+              <td><img src="{{offer.image.url}}" class="img-fluid rounded shadow" ></td>
+              <td>{{ offer.name }}</td>
+              <td>{{ offer.description }}</td>
+              <td>{{ offer.prixunit }}</td>
+              
+              
+              <td>
+                <li class="nav-item" ngbDropdown placement="bottom-right">
+                    <a class="nav-link nav-link-icon no-caret" id="navbar-default_dropdown_1" ngbDropdownToggle>
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span class="nav-link-inner--text d-lg-none"></span>
+                      </a>
+                    <div class="dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1" ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:void(0)">delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)">update</a>
+                    
+                    </div>
+                  </li>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -11,7 +11,8 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th scope="row">#</th>
+              <th scope="col">#    </th>
+              <th scope="col">image  </th>
               <th scope="col">username</th>
               <th scope="col">firstname</th>
               <th scope="col">lastname</th>
@@ -24,7 +25,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let user of Users ; index as i">
-              <td>{{i+1}}</td>
+              <td> {{ i+1}}</td>
+              <td>  <img src="{{user.image.url}}" class="img-fluid rounded shadow" ></td>
               <!-- <td> {{ commande.id }}</td>-->
               <td>{{ user.username }}</td>
               <td>{{ user.firstname }}</td>

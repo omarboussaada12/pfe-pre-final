@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -22,6 +22,9 @@ import { OfferComponent } from './admin/offer/offer.component';
 import { CommandeComponent } from './admin/commande/commande.component';
 import { EditComponent } from './admin/commande/edit/edit.component';
 import { AddComponent } from './admin/commande/add/add.component';
+import { ImageComponent } from './profile/image/image.component';
+import { EditPComponent } from './profile/edit/edit.component';
+import { AddofferComponent } from './admin/offer/addoffer/addoffer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { AddComponent } from './admin/commande/add/add.component';
     OfferComponent,
     CommandeComponent,
     EditComponent,
-    AddComponent
+    AddComponent,
+    ImageComponent,
+    EditPComponent,
+    AddofferComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,7 @@ import { AddComponent } from './admin/commande/add/add.component';
     AppRoutingModule,
     HomeModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

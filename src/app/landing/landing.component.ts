@@ -12,7 +12,7 @@ import { UserService } from '../_services/user.service';
 export class LandingComponent implements OnInit {
   focus: any;
   focus1: any;
-  offers? :any = [Offer];
+  offers? :any ;
   users? :any ;
   constructor(private offerService: OfferService , private userService : UserService) {}
 

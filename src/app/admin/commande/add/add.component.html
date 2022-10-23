@@ -1,1 +1,45 @@
-<p>add works!</p>
+<div *ngIf="show">
+    <div class="container">
+        <header class="jumbotron">
+
+        </header>
+
+        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-group">
+                <label for="offername">selectionner un offer</label>
+                <select name="offer" (change)="changeoffer($event)" class="form-control">
+                    <option>--- Select ---</option>
+                    <option value="{{off.name}}" *ngFor="let off of offers ">
+                        {{off.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nbrunit"> nombre d'arbres</label>
+                <input type="number" class="form-control" name="nbrunit" [(ngModel)]="form.nbrunit" required
+                    #nbrunit="ngModel" />
+                <div class="alert-danger" *ngIf="nbrunit.errors && f.submitted">
+                    <div *ngIf="nbrunit.errors.required">nombre d'arbres est requise</div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="region"> region</label>
+                <input type="text" class="form-control" name="region" [(ngModel)]="form.region" required
+                    #region="ngModel" />
+                <div class="alert-danger" *ngIf="region.errors && f.submitted">
+                    <div *ngIf="region.errors.required">la région est requise</div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-1 offset-md-11">
+                        <button class="btn btn-warning" type="submit">add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

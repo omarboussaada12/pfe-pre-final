@@ -1,7 +1,9 @@
 <div class="container">
     <header class="jumbotron">
-      <p>{{ content }}</p>
     </header>
+    <button  *ngIf="!isadmin" class="btn btn-1 btn-info" type="button"  placement="top"    ngbTooltip="add commande" (click)="addcommande()">ADD</button> 
+    <br>
+    <br>
     <div *ngIf="show">
     <div class="table-responsive-md">
     <table class="table table-hover">

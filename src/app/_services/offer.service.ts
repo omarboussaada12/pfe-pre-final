@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -40,6 +40,15 @@ export class OfferService {
         this.httpHeader
       )
       .pipe(retry(1), catchError(this.processError));
+  }
+  offerimage(offername: any, file: File):Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    const req = new HttpRequest('PUT', `${this.endpoint}/offer-image/`+ offername, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.httpClient.request(req);
   }
   /*change function in the backend*/
   updateOffer(id: any, data: any): Observable<Offer> {

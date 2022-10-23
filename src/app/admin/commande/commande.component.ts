@@ -42,7 +42,7 @@ export class CommandeComponent implements OnInit {
       err => {
         this.content = JSON.parse(err.error).message;
         this.show=false;
-       // this.router.navigate(['/home'])
+        this.router.navigate(['landing'])
       }
     );
    
@@ -60,7 +60,7 @@ export class CommandeComponent implements OnInit {
   }
   editcommande(id:any)
   {
-    this.router.navigate(['mod/edit',id])
+    this.router.navigate(['user/commande/update',id])
   }
   deletecommande(id:any)
   {
@@ -73,6 +73,11 @@ export class CommandeComponent implements OnInit {
     this.commandeService.validerCommande(id).subscribe((commandes:{})=>{
     });
     location.reload();
+  }
+  
+  addcommande()
+  {
+    this.router.navigate(['user/commande/add']);
   }
 
 }

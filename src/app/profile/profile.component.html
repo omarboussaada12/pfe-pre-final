@@ -21,18 +21,18 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="javascript:void(0)">
-                  <img src="./assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                  <img src="{{user.image.url}}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="height: 150px; width: 150px;">
                 </a>
               </div>
             </div>
             <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
               <div class="card-profile-actions py-4 mt-lg-0">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-                <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4" routerLink="/user-profile/edit">edit</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-default float-right" routerLink="/user-profile/image">update image</a>
               </div>
             </div>
             <div class="col-lg-4 order-lg-1">
-              <div class="card-profile-stats d-flex justify-content-center">
+              <!-- <div class="card-profile-stats d-flex justify-content-center">
                 <div>
                   <span class="heading">22</span>
                   <span class="description">Friends</span>
@@ -45,25 +45,30 @@
                   <span class="heading">89</span>
                   <span class="description">Comments</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="text-center mt-5">
-            <h3>Jessica Jones
-              <span class="font-weight-light">, 27</span>
-            </h3>
-            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
-            <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer</div>
-            <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
+            <h2>
+              <span class="font-weight-light" placement="left" ngbTooltip="username"><i class="ni ni-circle-08"></i></span>
+              {{user.username}}
+            </h2>
+            <div class="h5 font-weight-300" ><i class="ni ni-single-02" placement="left"  ngbTooltip="firstname & lastname">  </i>  {{user.firstname}} {{user.lastname}}</div>
+            <div class="h5 font-weight-300"  ><i class="ni ni-email-83" placement="left" ngbTooltip="email">  </i>{{user.email}}</div>
+            <div class="h5 font-weight-300" ><i class="ni ni-mobile-button"  placement="left" ngbTooltip="phone">  </i>{{user.phone}}</div>
+            <div class="h5 font-weight-300" ><i class="ni ni-building"  placement="left" ngbTooltip="address"></i>
+              {{user.address}}</div>
+              <br>
+              <br>
           </div>
-          <div class="mt-5 py-5 border-top text-center">
+          <!-- <div class="mt-5 py-5 border-top text-center">
             <div class="row justify-content-center">
               <div class="col-lg-9">
                 <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
                 <a href="javascript:void(0)">Show more</a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

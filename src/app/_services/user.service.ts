@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { User } from '../_model/User';
@@ -37,40 +37,45 @@ export class UserService {
       .get<User>(this.endpoint + '/get-all-users')
       .pipe(retry(1), catchError(this.processError));
   }
+  getUsersAdmin(): Observable<User> {
+    return this.httpClient
+      .get<User>(this.endpoint + '/get-user-admin')
+      .pipe(retry(1), catchError(this.processError));
+  }
   getSingleUser(username: any): Observable<any> {
     return this.httpClient
       .get<any>(this.endpoint + '/get-user/' + username)
       .pipe(retry(1), catchError(this.processError));
   }
-  addUser(data: any): Observable<User> {
+ 
+  
+  updateUserimage(username: any, file: File):Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+    const req = new HttpRequest('PUT', `${this.endpoint}/update-user-image/`+ username, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.httpClient.request(req);
+  }
+  updateUserinfo(username: any, data : any): Observable<userP> {
+    
     return this.httpClient
-      .post<User>(
-        this.endpoint + '/add-Offer',
+      .put<userP>(
+        this.endpoint + '/update-user-info/' + username,
         JSON.stringify(data),
         this.httpHeader
       )
       .pipe(retry(1), catchError(this.processError));
   }
   /*change function in the backend*/
-  updateOffer(id: any, data: any): Observable<User> {
+  deleteUser(id: any) {
     return this.httpClient
-      .put<User>(
-        this.endpoint + '/update-offer' + id,
-        JSON.stringify(data),
-        this.httpHeader
-      )
+      .delete<User>(this.endpoint + '/delete-user/' + id, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
-  deleteOffer(id: any) {
-    return this.httpClient
-      .delete<User>(this.endpoint + '/delete-Offer/' + id, this.httpHeader)
-      .pipe(retry(1), catchError(this.processError));
-  }
-  getUsersAdmin(): Observable<User> {
-    return this.httpClient
-      .get<User>(this.endpoint + '/get-user-admin')
-      .pipe(retry(1), catchError(this.processError));
-  }
+  
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
@@ -83,4 +88,13 @@ export class UserService {
       message;
     });
   }
+  
+}
+export class userP {
+  firstname ?: string;
+  lastname?: string;
+  phone ?: String;
+  address?: string;
+  email?: string;
+  role!: string;
 }
