@@ -25,6 +25,12 @@ import { AddComponent } from './admin/commande/add/add.component';
 import { ImageComponent } from './profile/image/image.component';
 import { EditPComponent } from './profile/edit/edit.component';
 import { AddofferComponent } from './admin/offer/addoffer/addoffer.component';
+import { AdduserComponent } from './admin/user/adduser/adduser.component';
+import { EdituserComponent } from './admin/user/edituser/edituser.component';
+import { EditofferComponent } from './admin/offer/editoffer/editoffer.component';
+import { ClientComponent } from './client/client.component';
+import { CareerComponent } from './career/career.component';
+import { ReclamationComponent } from './admin/reclamation/reclamation.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,13 @@ import { AddofferComponent } from './admin/offer/addoffer/addoffer.component';
     AddComponent,
     ImageComponent,
     EditPComponent,
-    AddofferComponent
+    AddofferComponent,
+    AdduserComponent,
+    EdituserComponent,
+    EditofferComponent,
+    ClientComponent,
+    CareerComponent,
+    ReclamationComponent
   ],
   imports: [
     BrowserModule,

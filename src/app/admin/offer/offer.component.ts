@@ -34,4 +34,13 @@ export class OfferComponent implements OnInit {
       this.offers = res;
     });
   }
-}
+  addservice()
+  {
+    this.router.navigate(['admin/offer/add'])
+  }
+  update(id : any)
+  {
+    this.router.navigate(['admin/offer/edit',id])
+  }
+
+  }

@@ -32,6 +32,12 @@
             <span class="nav-link-inner--text">Home</span>
           </a>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['Career']">
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">Career</span>
+          </a>
+        </li>
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['login']">
             <i class="ni ni-ui-04 d-lg-none"></i>
@@ -67,11 +73,11 @@
         <li class="nav-item dropdown" *ngIf="showAdminBoard">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['admin/offer']">
             <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">offers</span>
+            <span class="nav-link-inner--text">services</span>
           </a>
         </li>
         <li class="nav-item dropdown" *ngIf="showAdminBoard">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user/commande']">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['reclamation']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">reclamations</span>
           </a>
@@ -81,6 +87,12 @@
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['admin/commande']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">commandes</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="showModeratorBoard">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['client/oasis']">
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">oasis</span>
           </a>
         </li>
         <li class="nav-item dropdown" *ngIf="showModeratorBoard">

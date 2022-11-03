@@ -1,0 +1,123 @@
+<div class="container">
+    <header class="jumbotron">
+
+    </header>
+    <h1>Add a new user</h1>
+    <div class="container">
+        <div class="row gutters">
+            <!-- <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name"> add new user</h5>
+                            </div>
+                            <div class="about">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="fullName">Username</label>
+                                            <input type="text" class="form-control" name="nbrunit"
+                                                [(ngModel)]="f.username" required #username="ngModel" />
+                                            <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                                                <div *ngIf="username.errors.required">username est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" class="form-control" name="lastname"
+                                                [(ngModel)]="f.lastname" required #lastname="ngModel" />
+                                            <div class="alert-danger" *ngIf="lastname.errors && f.submitted">
+                                                <div *ngIf="lastname.errors.required">username est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="required-field" for="firstname">First name</label>
+                                            <input type="text" class="form-control" name="firstname"
+                                                [(ngModel)]="f.firstname" required #firstname="ngModel" />
+                                            <div class="alert-danger" *ngIf="firstname.errors && f.submitted">
+                                                <div *ngIf="firstname.errors.required">username est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="phone">Phone Number</label>
+                                            <input type="text" class="form-control" name="phone" [(ngModel)]="f.phone"
+                                                required #phone="ngModel" />
+                                            <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+                                                <div *ngIf="phone.errors.required">phone est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="Address">Address</label>
+                                            <input type="text" class="form-control" name="phone" [(ngModel)]="f.phone"
+                                                required #phone="ngModel" />
+                                            <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+                                                <div *ngIf="phone.errors.required">phone est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="Address">role</label>
+                                            <select name="role" (change)="changeoffer($event)" class="form-control"
+                                                [(ngModel)]="f.role" required #role="ngModel">
+                                                <option value="ROLE_ADMIN">ADMIN</option>
+                                                <option value="ROLE_CLIENT">CLIENT</option>
+                                                <option value="ROLE_USER">USER</option>
+                                            </select>
+                                            <div class="alert-danger" *ngIf="role.errors && f.submitted">
+                                                <div *ngIf="role.errors.required">role is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" [(ngModel)]="f.email"
+                                                required #email="ngModel" />
+                                            <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                                                <div *ngIf="email.errors.required">email est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-12 mb-3">
+                                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

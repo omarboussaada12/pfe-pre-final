@@ -1,17 +1,18 @@
 <div class="container">
     <header class="jumbotron">
+
     </header>
-    </div>
 <div class="event-schedule-area-two bg-color pad100">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title text-center">
                     <div class="title-text">
-                        <h2>List  of Services</h2>
+                        <h2>List  reclamation</h2>
                     </div>
                 </div>
             </div>
+            <!-- /.col end-->
         </div>
         <!-- row end-->
         <div class="row">
@@ -22,55 +23,51 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" scope="col">#</th>
-                                        <th scope="col">Images</th>
-                                        <th scope="col">Service name and description</th>
-                                        <th scope="col">price</th>
-                                        <th class="text-center" scope="col">Action</th>
+                                        <th class="text-center" scope="col">Date</th>
+                                        <th scope="col">Speakers</th>
+                                        <th scope="col">Session</th>
+                                        <th scope="col">Venue</th>
+                                        <th class="text-center" scope="col">Venue</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="inner-box" *ngFor="let offer of offers ; index as i">
+                                    <tr class="inner-box" >
                                         <th scope="row">
                                             <div class="event-date">
-                                                <span>{{i+1}}</span>
+                                                <span>16</span>
+                                                <p>Novembar</p>
                                             </div>
                                         </th>
                                         <td>
                                             <div class="event-img">
-                                                <img src="{{offer.image.url}}"  >
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="event-wrap">
-                                                <h3><a href="#">{{ offer.name }}</a></h3>
+                                                <h3><a href="#">Harman Kardon</a></h3>
                                                 <div class="meta">
+                                                    <div class="organizers">
+                                                        <a href="#">Aslan Lingker</a>
+                                                    </div>
+                                                    <div class="categories">
+                                                        <a href="#">Inspire</a>
+                                                    </div>
                                                     <div class="time">
-                                                        <span>{{ offer.description }}</span>
+                                                        <span>05:35 AM - 08:00 AM 2h 25'</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="r-no">
-                                                <span>{{ offer.prixunit }}TND</span>
+                                                <span>Room B3</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <!-- <div class="primary-btn">
+                                            <div class="primary-btn">
                                                 <a class="btn btn-primary" href="#">Read More</a>
-                                            </div> -->
-                                            <li class="nav-item" ngbDropdown placement="bottom-right">
-                                                <a class="nav-link nav-link-icon no-caret" id="navbar-default_dropdown_1" ngbDropdownToggle>
-                                                    <i class="ni ni-settings-gear-65"></i>
-                                                    <span class="nav-link-inner--text d-lg-none"></span>
-                                                  </a>
-                                                <div class="dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1" ngbDropdownMenu>
-                                                  <a class="dropdown-item" (click)="delete(offer.id)">delete</a>
-                                                  <a class="dropdown-item" (click)="update(offer.id)">update</a>
-                                                
-                                                </div>
-                                              </li>
+                                            </div>
                                         </td>
                                     </tr>
                                    
@@ -86,4 +83,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -16,7 +16,7 @@ export class EditComponent implements OnInit {
   };
   commande: any;
   offers :any;
-  isselected = false;
+  isselected :any;
   changeoffer(e:any){
     console.log(e.target.value)
     this.form.offername = e.target.value;
@@ -29,15 +29,13 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.getcommandebyid();
     this.fetchlistoffername();
-    if(this.offers.name === this.commande.offername)
-    {
-      const isselected =true;
-    }
+    
   }
   getcommandebyid() {
     this.commandeService.getSingleCommande(+this.route.snapshot.params['id']).subscribe((res: {}) => {
       this.commande = res;
       console.log(this.commande);
+      this.isselected=this.commande.offername;
     });
   }
   fetchlistoffername() {

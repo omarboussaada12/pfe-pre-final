@@ -8,8 +8,7 @@
 
       <div class="col-12">
         <label for="offername">selectionner un offer</label>
-        <select name="offer" (change)="changeoffer($event)" class="form-control">
-          <option selected={{commande.offername}}>{{commande.offername}}</option>
+        <select  name="offer" [(ngModel)]="isselected" (change)="changeoffer($event)" class="form-control">
           <option value="{{off.name}}" *ngFor="let off of offers ">
             {{off.name}}
           </option>

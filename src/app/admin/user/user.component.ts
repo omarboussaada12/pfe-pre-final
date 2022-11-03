@@ -39,4 +39,10 @@ export class UserComponent implements OnInit {
       this.Users = res;
     });
   }
+  adduser(){
+    this.router.navigate(['/admin/user/add'])
+  }
+  update(username: any){
+    this.router.navigate(['admin/user/edit/',username]);
+  }
 }

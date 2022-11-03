@@ -4,10 +4,10 @@
     <section class="section section-lg section-shaped ">
       <ngb-carousel>
         <ng-template ngbSlide>
-          <img class="d-block w-100" src="assets/img/theme/test.jpg" alt="First slide">
+          <img class="d-block w-100" src="assets/img/theme/test.jpg" alt="First slide"style="height: 850px; width: auto;">
         </ng-template>
         <ng-template ngbSlide>
-          <img class="d-block w-100" src="assets/img/theme/img-2-1200x1000.jpg" alt="Second slide">
+          <img class="d-block w-100" src="assets/img/theme/img-2-1200x1000.jpg" alt="Second slide" style="height: 850px; width: auto;">
         </ng-template>
     </ngb-carousel>
       <div class="shape shape-style-1 ">
@@ -40,12 +40,46 @@
     </section>
     <!-- 1st Hero Variation -->
   </div>
- 
+  <section >
+    <!-- <div class="shape shape-style-1 shape-default">
+       <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span> 
+    </div> -->
+    <div class="container py-md">
+      <div class="row row-grid justify-content-between align-items-center">
+        <div class="col-lg-6">
+          <h2>About Us</h2>
+            <span class="text-white">completed with examples</span>
+        
+            <p>Drobee is a Tunisian technology start-up. Starting with intelligent drones, we bring smart technology solutions to the agriculture industry. Our goal is to boost yields by using AI, drone technology, and robotics to automate farming chores.</p>
+          <div class="btn-wrapper">
+            <a [routerLink]="['/login']" class="btn btn-success">Login Page</a>
+            <a [routerLink]="['/register']" class="btn btn-white">Register Page</a>
+          </div>
+        </div>
+        <div class="col-lg-5 mb-lg-auto">
+          <img src="../../assets/img/theme/landingaboutus.jpg" class="img-fluid floating" style="height: 100%; width: 100%;" >
+        </div>
+      </div>
+    </div>
+    <!-- SVG separator -->
+    <!-- <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div> -->
+  </section>
   <section class="section section-lg">
     <div class="container">
       <div class="row row-grid align-items-center">
         <div class="col-md-6 order-md-2">
-          <img src="./assets/img/theme/promo-1.png" class="img-fluid floating">
+          <img src="../../assets/img/theme/landingaboutus.jpg" class="img-fluid floating" style="height: 100%; width: 100%;" >
         </div>
         <div class="col-md-6 order-md-1">
           <div class="pr-md-5">
@@ -53,7 +87,7 @@
               <i class="ni ni-settings-gear-65"></i>
             </div>
             <h3>About Us</h3>
-            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
+            <p>Drobee is a Tunisian technology start-up. Starting with intelligent drones, we bring smart technology solutions to the agriculture industry. Our goal is to boost yields by using AI, drone technology, and robotics to automate farming chores.</p>
             <ul class="list-unstyled mt-5">
               <li class="py-2">
                 <div class="d-flex align-items-center">
@@ -109,14 +143,14 @@
         <div class="col-md-6">
           <div class="card bg-default shadow border-0">
             <img src="{{offer.image.url}}" class="card-img-top">
-            <blockquote class="card-blockquote">
+            <!-- <blockquote class="card-blockquote">
               <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="svg-bg">
                 <polygon points="0,52 583,95 0,95" class="fill-default" />
                 <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
               </svg>
-              <!-- <h4 class="display-3 font-weight-bold text-white">Design System</h4>
-              <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens.</p> -->
-            </blockquote>
+               <h4 class="display-3 font-weight-bold text-white">Design System</h4>
+              <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens.</p> 
+            </blockquote> -->
           </div>
         </div>
         <div class="col-md-6">
@@ -125,9 +159,9 @@
               <i class="ni ni-settings"></i>
             </div>
             <h3>{{offer.name}}</h3>
-            <p class="lead">Don't let your uses guess by attaching tooltips and popoves to any element. Just make sure you enable them first via JavaScript.</p>
-            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
-            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
+            <p class="lead">{{offer.description}}</p>
+           <!-- <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and youre good to go.</p>
+            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p> -->
             <a href="javascript:void(0)" class="font-weight-bold text-warning mt-5">A beautiful UI Kit for impactful websites</a>
           </div>
         </div>

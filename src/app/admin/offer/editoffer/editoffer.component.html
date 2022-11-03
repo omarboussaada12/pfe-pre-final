@@ -3,14 +3,14 @@
 
     </header>
 
-    <h1>Add a new service</h1>
+    <h1>update service</h1>
 
     <form [formGroup]="myForm" (ngSubmit)="submit()">
 
         <div class="form-group">
             <label for="offername">Service name</label>
-            <input formControlName="offername" id="offername" type="text" class="form-control">
-            <div *ngIf="f.offername.touched && f.offername.invalid" class="alert alert-danger">
+            <input formControlName="offername" id="offername" [value]="offer.name" type="text" class="form-control" >
+            <div *ngIf="f.offername.touched  && f.offername.invalid" class="alert alert-danger">
                 <div *ngIf="f.offername.errors && f.offername.errors.required">Service name is required.</div>
                 <div *ngIf="f.offername.errors && f.offername.errors.minlength">Service name should be 4 character.
                 </div>
@@ -27,12 +27,12 @@
         <div class="form-group">
             <label for="description">description</label>
             <textarea rows="5" cols="10" formControlName="description" id="description" type="text"
-                class="form-control">
+                class="form-control"></textarea>
         <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
             <div *ngIf="f.description.errors && f.description.errors.required">Name is required.</div>
             <div *ngIf="f.description.errors && f.description.errors.minlength">Name should be 3 character.</div>
         </div>
-    </textarea>
+    
         </div>
 
         <div class="form-group">
@@ -44,6 +44,7 @@
         </div>
 
         <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+        <img [src]="offer.image.url" *ngIf="!imageSrc" style="height: 300px; width:500px">
         <br>
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>

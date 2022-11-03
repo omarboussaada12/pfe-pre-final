@@ -1,0 +1,21 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-edituser',
+  templateUrl: './edituser.component.html',
+  styleUrls: ['./edituser.component.css']
+})
+export class EdituserComponent implements OnInit {
+
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  changeoffer($event: any) {
+    throw new Error('Method not implemented.');
+    }
+    onSubmit() {
+    throw new Error('Method not implemented.');
+    }
+}
