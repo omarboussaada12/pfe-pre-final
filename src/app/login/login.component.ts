@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { WebSocketService } from '../web-socket.service';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
@@ -17,8 +18,12 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  messages: any;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService ,private router: Router) { }
+  constructor(private authService: AuthService,
+     private tokenStorage: TokenStorageService ,
+     private router: Router,private webSocketService: WebSocketService
+   ) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -37,11 +42,12 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+        
         this.reloadPage();
+
       },
       err => {
         this.errorMessage = err.error.message;
@@ -49,7 +55,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
+ 
   reloadPage(): void {
     window.location.reload();
    

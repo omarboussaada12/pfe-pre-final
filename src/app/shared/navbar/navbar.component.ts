@@ -3,6 +3,8 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { timeStamp } from 'console';
+import { WebSocketService } from 'src/app/web-socket.service';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-navbar',
@@ -13,6 +15,8 @@ export class NavbarComponent implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    messages: string[] = [] ;
+   
     title(title: any) {
         throw new Error('Method not implemented.');
       }
@@ -22,22 +26,38 @@ export class NavbarComponent implements OnInit {
       showuserBoard = false;
       showModeratorBoard = false;
       username?: string;
-    
+      nonotification =true ;
 
-    constructor(public location: Location, private router: Router ,private tokenStorageService: TokenStorageService) {
+    constructor(public location: Location,
+         private router: Router ,
+         private tokenStorageService: TokenStorageService,
+         private webSocketService: WebSocketService) {
     }
-
+    
     ngOnInit() {
         
         this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
+      const token = this.tokenStorageService.getToken();
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.showuserBoard = this.roles.includes('ROLE_USER');
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_CLIENT');
       this.username = user.username;
+    console.log(token)
+    console.log(this.username)
+      this.webSocketService.connect(this.username,token );
+      this.webSocketService.getAllMessages().subscribe((message) => {
+        this.messages.push(message.text);
+        console.log(message);
+      });
+      this.webSocketService.getSpecificMessages().subscribe((message) => {
+        this.messages.push(message.text);
+        console.log(message);
+      });
+     
     }
    
   

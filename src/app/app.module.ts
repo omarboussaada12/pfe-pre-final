@@ -31,6 +31,10 @@ import { EditofferComponent } from './admin/offer/editoffer/editoffer.component'
 import { ClientComponent } from './client/client.component';
 import { CareerComponent } from './career/career.component';
 import { ReclamationComponent } from './admin/reclamation/reclamation.component';
+import { DatePipe } from '@angular/common';
+import { DetailComponent } from './admin/commande/detail/detail.component';
+import { WebSocketService } from './web-socket.service';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +58,8 @@ import { ReclamationComponent } from './admin/reclamation/reclamation.component'
     EditofferComponent,
     ClientComponent,
     CareerComponent,
-    ReclamationComponent
+    ReclamationComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,7 @@ import { ReclamationComponent } from './admin/reclamation/reclamation.component'
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders , DatePipe , WebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,7 +30,7 @@ form: any = {
  
    
   onSubmit(){
- 
+ console.log(this.form) ;
   }
  }
 

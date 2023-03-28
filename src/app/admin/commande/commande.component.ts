@@ -56,6 +56,7 @@ export class CommandeComponent implements OnInit {
   fetchcommandeU(username : String) {
     return this.commandeService.getCommandesuser(username).subscribe((res: {}) => {
       this.commandes = res;
+      console.log(res);
     });
   }
   editcommande(id:any)
@@ -70,9 +71,8 @@ export class CommandeComponent implements OnInit {
   }
   confirmercommande(id:any)
   {
-    this.commandeService.validerCommande(id).subscribe((commandes:{})=>{
-    });
-    location.reload();
+    
+    this.router.navigate(['admin/commande/detail',id]);
   }
   
   addcommande()

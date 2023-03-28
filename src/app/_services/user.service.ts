@@ -16,7 +16,7 @@ export class UserService {
       'Content-Type': 'application/json',
     }),
   };
-
+// for test 
   getPublicContent(): Observable<any> {
     return this.httpClient.get(this.endpoint + '/api/test/all', { responseType: 'text' });
   }
@@ -32,6 +32,8 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.httpClient.get(this.endpoint + '/api/test/admin', { responseType: 'text' });
   }
+
+// api user 
   getUsers(): Observable<User> {
     return this.httpClient
       .get<User>(this.endpoint + '/get-all-users')
@@ -48,10 +50,8 @@ export class UserService {
       .pipe(retry(1), catchError(this.processError));
   }
  
-  
   updateUserimage(username: any, file: File):Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-
     formData.append('file', file);
     const req = new HttpRequest('PUT', `${this.endpoint}/update-user-image/`+ username, formData, {
       reportProgress: true,
@@ -59,8 +59,8 @@ export class UserService {
     });
     return this.httpClient.request(req);
   }
-  updateUserinfo(username: any, data : any): Observable<userP> {
-    
+
+  updateUserinfo(username: any, data : any): Observable<userP> {  
     return this.httpClient
       .put<userP>(
         this.endpoint + '/update-user-info/' + username,
@@ -73,6 +73,11 @@ export class UserService {
   deleteUser(id: any) {
     return this.httpClient
       .delete<User>(this.endpoint + '/delete-user/' + id, this.httpHeader)
+      .pipe(retry(1), catchError(this.processError));
+  }
+  updateroleUser(username : any , role :any) {
+    return this.httpClient
+      .put<User>(this.endpoint + '/update-user-role/' + username +'/'+ role, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
   

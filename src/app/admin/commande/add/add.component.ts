@@ -15,7 +15,8 @@ export class AddComponent implements OnInit {
   form: any = {
     offername :"",
     nbrunit: "",
-    region: ""
+    region: "",
+    datec :Date
   };
   currentUser: any; 
   content?: string;
@@ -54,12 +55,13 @@ export class AddComponent implements OnInit {
  
   onSubmit(){
     this.currentUser = this.token.getUser();
-    const { offername,nbrunit,region } = this.form;
+    const { offername,nbrunit,region ,datec} = this.form;
     const cq: Commandereq = new Commandereq();
     cq.offername = offername;
     cq.username =this.currentUser.username;
     cq.nbrunit =nbrunit ;
     cq.region =region;
+    cq.datec = datec;
     console.log(cq);
     this.commandeService.addCommande(cq).subscribe(
       data => {
@@ -77,6 +79,7 @@ export class Commandereq {
   username?: string;
   region?: string;
   nbrunit?: number;
+  datec: any;
 }
 
 

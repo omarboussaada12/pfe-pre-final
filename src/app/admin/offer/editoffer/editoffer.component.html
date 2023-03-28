@@ -5,48 +5,34 @@
 
     <h1>update service</h1>
 
-    <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <form name="form" (ngSubmit)="submit()" #f="ngForm">
 
         <div class="form-group">
-            <label for="offername">Service name</label>
-            <input formControlName="offername" id="offername" [value]="offer.name" type="text" class="form-control" >
-            <div *ngIf="f.offername.touched  && f.offername.invalid" class="alert alert-danger">
-                <div *ngIf="f.offername.errors && f.offername.errors.required">Service name is required.</div>
-                <div *ngIf="f.offername.errors && f.offername.errors.minlength">Service name should be 4 character.
-                </div>
-            </div>
+            <label for="name">Service name</label>
+            <input  type="text" class="form-control" name="name" [(ngModel)]="form.name"    #name="ngModel"  />   
         </div>
         <div class="form-group">
             <label for="prixunit">prix for a unit</label>
-            <input formControlName="prixunit" id="prixunit" type="text" class="form-control">
-            <div *ngIf="f.prixunit.touched && f.prixunit.invalid" class="alert alert-danger">
-                <div *ngIf="f.prixunit.errors && f.prixunit.errors.required">Name is required.</div>
-                <div *ngIf="f.prixunit.errors && f.prixunit.errors.minlength">Name should be 3 character.</div>
-            </div>
+            <input  name ="prixunit" #prixunit="ngModel"  [(ngModel)]="form.prixunit" type="number" class="form-control" >
+         
         </div>
         <div class="form-group">
             <label for="description">description</label>
-            <textarea rows="5" cols="10" formControlName="description" id="description" type="text"
+            <textarea rows="5" cols="10" #description="ngModel" [(ngModel)]="form.description"   type="text"
                 class="form-control"></textarea>
-        <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
-            <div *ngIf="f.description.errors && f.description.errors.required">Name is required.</div>
-            <div *ngIf="f.description.errors && f.description.errors.minlength">Name should be 3 character.</div>
-        </div>
     
         </div>
-
         <div class="form-group">
             <label for="file">image </label>
-            <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
-            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
-            </div>
+            <input name="file" id="file" type="file" class="form-control" (change)="onFileChange($event)" value="">
+          
         </div>
+       
 
-        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
-        <img [src]="offer.image.url" *ngIf="!imageSrc" style="height: 300px; width:500px">
+        <img [src]="imageSrc"  style="height: 300px; width:500px">
         <br>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <br>
+        <button class="btn btn-primary" type="submit"> update</button>
     </form>
     <br>
     <br>

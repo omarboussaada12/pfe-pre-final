@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { WebSocketService } from '../web-socket.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
@@ -14,9 +15,11 @@ export class ProfileComponent implements OnInit {
     currentUser: any; 
     user :any = { username :'' , firstname :'' , lastname :'' , phone :'' ,address :'' , email :'', image :'' } 
     content?: string;
+  messages: any;
     constructor(private token: TokenStorageService ,
       private userService : UserService,
-      private router: Router) { }
+      private router: Router,
+      private webSocketService: WebSocketService) { }
   
     ngOnInit(): void {
         this.userService.getUserBoard().subscribe(
@@ -30,8 +33,12 @@ export class ProfileComponent implements OnInit {
               this.router.navigate(['landing'])
             }
           );
-      
+        setTimeout(()=>this.webSocketService.sendMessage("test to all from "+this.user.username),2000);
+        
+        setTimeout(()=>this.webSocketService.sendPrivateMessage(this.user.username,"private  message from  ","ahmed"),2000); 
+       
     }
+    
     fetchoneuser(username : any) {
       return this.userService.getSingleUser(username).subscribe((res: {}) => {
         this.user = res;

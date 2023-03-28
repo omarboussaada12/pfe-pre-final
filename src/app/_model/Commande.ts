@@ -6,6 +6,7 @@ export class Commande {
     nbrunit?: number;
     date?:Date ;
     status?:string;
+    datec?:Date ;
 
 
   }

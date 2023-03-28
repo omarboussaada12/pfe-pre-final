@@ -46,7 +46,7 @@ export class CommandeService {
   updateCommande(id: any, data: any): Observable<Commande> {
     return this.httpClient
       .put<Commande>(
-        this.endpoint + '/users/' + id,
+        this.endpoint + '/update-Commande/' + id,
         JSON.stringify(data),
         this.httpHeader
       )
@@ -60,6 +60,11 @@ export class CommandeService {
   validerCommande(id: any) {
     return this.httpClient
       .put<Commande>(this.endpoint + '/valider-Commande/' + id, this.httpHeader)
+      .pipe(retry(1), catchError(this.processError));
+  }
+  refuserCommande(id: any) {
+    return this.httpClient
+      .put<Commande>(this.endpoint + '/refuser-Commande/' + id, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
   processError(err: any) {
@@ -81,5 +86,6 @@ export class Commandereq {
   username?: string;
   region?: string;
   nbrunit?: number;
+  datec?:Date ;
 }
 

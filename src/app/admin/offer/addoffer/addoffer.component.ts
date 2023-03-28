@@ -14,9 +14,10 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./addoffer.component.css']
 })
 export class AddofferComponent implements OnInit {
-  imageSrc: string = '';
+  imageSrc: string = "";
   offer : any = {name:'' , prixunit:'', description:'' };
   currentFile?: any;
+  imageadded: boolean =false ;
   isSuccessful:boolean=false;
   isSuccessfulimage:boolean=false;
   errorMessage:any;
@@ -28,7 +29,9 @@ export class AddofferComponent implements OnInit {
    fileSource: new FormControl('', [Validators.required])
  });
  
- constructor(private http: HttpClient, private offerService : OfferService) { }
+ constructor(private http: HttpClient,
+   private offerService : OfferService,
+   private router: Router,) { }
   ngOnInit(): void {
   }
    
@@ -37,8 +40,8 @@ export class AddofferComponent implements OnInit {
  }
   
  onFileChange(event:any) {
+  this.imageadded = true;
    const reader = new FileReader();
-   
    if(event.target.files && event.target.files.length) {
      const [file] = event.target.files;
      this.currentFile =file ;
@@ -66,22 +69,27 @@ export class AddofferComponent implements OnInit {
   const formData: FormData = new FormData();
   formData.append('file', this.currentFile);
   this.offer.image = formData ;
-  console.log(this.offer);
-  this.offerService.addOffer(this.offer).subscribe(
-    data => {
-      this.isSuccessful = true;
-      this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
-        data => {
-          this.isSuccessfulimage = true;
-        },
-        err => {
-          this.errorMessage = err.error.message;
-        }
-      );
-    },
-    err => {
-      this.errorMessage = err.error.message;
-    }
-  );
+  if(this.imageadded === false)
+  {
+    confirm("you need to select an image for this service");
+  }else{
+    this.offerService.addOffer(this.offer).subscribe(
+      data => {
+        this.isSuccessful = true;
+        this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
+          data => {
+            this.router.navigate(['admin/service/'])
+           
+          },
+          err => {
+            this.errorMessage = err.error.message;
+          }
+        );
+      },
+      err => {
+        this.errorMessage = err.error.message;
+      }
+    );
+  }
  }
 }

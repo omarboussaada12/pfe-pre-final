@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OfferService } from 'src/app/_services/offer.service';
 
 @Component({
@@ -11,38 +11,41 @@ import { OfferService } from 'src/app/_services/offer.service';
 })
 export class EditofferComponent implements OnInit {
   imageSrc: string = '';
-  offer : any = {name:'' , prixunit:'', description:'' };
+  changeimage : boolean = false ;
+  form: any = {
+    name :"",
+    prixunit: "",
+    description: ""
+  };
+  offer : any = {id :'',name:'' , prixunit:'', description:'',image:'' };
   currentFile?: any;
   isSuccessful:boolean=false;
   isSuccessfulimage:boolean=false;
   errorMessage:any;
-  myForm = new FormGroup({
-   offername: new FormControl('', [Validators.required, Validators.minLength(5)]),
-   prixunit: new FormControl('', [Validators.required]),
-   description: new FormControl('', [Validators.required]),
-   file: new FormControl('', [Validators.required]),
-   fileSource: new FormControl('', [Validators.required])
- });
  
- constructor(private http: HttpClient, private offerService : OfferService , private route: ActivatedRoute,) { }
+ 
+ constructor(private http: HttpClient, 
+  private offerService : OfferService ,
+   private route: ActivatedRoute,
+   private router: Router,) { }
   ngOnInit(): void {
    this.getofferbyid();
-   console.log(this.offer.name)
   }
    
   getofferbyid() {
     this.offerService.getSingleOffer(+this.route.snapshot.params['id']).subscribe((res: {}) => {
       this.offer = res;
-      console.log(this.offer);
+      this.form.name = this.offer.name ;
+      this.form.prixunit = this.offer.prixunit ;
+      this.form.description =this.offer.description ;
+      this.imageSrc = this.offer.image.url ;
     });
   }
- get f(){
-   return this.myForm.controls;
- }
+ 
   
  onFileChange(event:any) {
+   this.changeimage = true ;
    const reader = new FileReader();
-   
    if(event.target.files && event.target.files.length) {
      const [file] = event.target.files;
      this.currentFile =file ;
@@ -52,28 +55,23 @@ export class EditofferComponent implements OnInit {
      reader.onload = () => {
   
        this.imageSrc = reader.result as string;
-    
-       this.myForm.patchValue({
-         fileSource: reader.result
-       });
-  
      };
   
    }
  }
   
  submit(){
-  
-  this.offer.name = this.myForm.value.offername;
-  this.offer.prixunit = this.myForm.value.prixunit;
-  this.offer.description = this.myForm.value.description;
+  this.offer.id = this.route.snapshot.params['id'];
+  this.offer.name = this.form.name;
+  this.offer.prixunit = this.form.prixunit;
+  this.offer.description = this.form.description;
   const formData: FormData = new FormData();
   formData.append('file', this.currentFile);
   this.offer.image = formData ;
-  console.log(this.offer);
-  this.offerService.addOffer(this.offer).subscribe(
+  this.offerService.updateOffer(this.route.snapshot.params['id'],this.offer).subscribe(
     data => {
-      this.isSuccessful = true;
+     if(this.changeimage != false)
+     {
       this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
         data => {
           this.isSuccessfulimage = true;
@@ -82,6 +80,9 @@ export class EditofferComponent implements OnInit {
           this.errorMessage = err.error.message;
         }
       );
+     }else{
+      this.router.navigate(['admin/service'])
+     }
     },
     err => {
       this.errorMessage = err.error.message;

@@ -36,11 +36,17 @@ export class OfferComponent implements OnInit {
   }
   addservice()
   {
-    this.router.navigate(['admin/offer/add'])
+    this.router.navigate(['admin/service/add'])
   }
   update(id : any)
   {
-    this.router.navigate(['admin/offer/edit',id])
+    this.router.navigate(['admin/service/edit',id])
+  }
+  delete(id : any)
+  {
+  this.offerService.deleteOffer(id).subscribe((res: {}) => {
+    location.reload();
+    });
   }
 
   }

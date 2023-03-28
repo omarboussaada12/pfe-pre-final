@@ -3,44 +3,51 @@
     <header class="jumbotron">
 
     </header>
+    
+    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
+      <div class="form-group">
+          <label for="offername">selectionner un offer</label>
+          <select  name="offer" [(ngModel)]="isselected" (change)="changeoffer($event)" class="form-control">
+            <option value="{{off.name}}" *ngFor="let off of offers ">
+              {{off.name}}
+            </option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="nbrunit"> nombre d'arbres</label>
+          <input type="number" class="form-control" name="nbrunit" [(ngModel)]="form.nbrunit" required 
+              #nbrunit="ngModel" />
+          <div class="alert-danger" *ngIf="nbrunit.errors && f.submitted">
+              <div *ngIf="nbrunit.errors.required">nombre d'arbres est requise</div>
 
-    <form class="row g-3">
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="region"> region</label>
+          <input type="text" class="form-control" name="region" [(ngModel)]="form.region" required
+              #region="ngModel" />
+          <div class="alert-danger" *ngIf="region.errors && f.submitted">
+              <div *ngIf="region.errors.required">la région est requise</div>
 
-      <div class="col-12">
-        <label for="offername">selectionner un offer</label>
-        <select  name="offer" [(ngModel)]="isselected" (change)="changeoffer($event)" class="form-control">
-          <option value="{{off.name}}" *ngFor="let off of offers ">
-            {{off.name}}
-          </option>
-        </select>
+          </div>
       </div>
-      <div class="col-12">
-        <label for="inputCity" class="form-label">nbrunit</label>
-        <input type="number" class="form-control" id="nbrunit" value={{commande.nbrunit}} />
-      </div>
-      <div class="col-12">
-        <label for="inputregion" class="form-label">region</label>
-        <input type="text" class="form-control" id="region" value={{commande.region}} />
-      </div>
-      <div class="col-12">
-        <label for="inputdate" class="form-label">date</label>
-        <input disabled="" type="date" class="form-control" id="date" value="{{ commande.date}}" />
-      </div>
-      <div class="col-12">
-        <label for="inputstatus" class="form-label">status</label>
-        <input disabled="" type="text" class="form-control" id="status" value={{commande.status}} />
-      </div>
-      <br>
+      <div class="form-group">
+        <label for="region"> Date</label>
+        <input type="date" class="form-control" name="datec" [(ngModel)]="form.datec"  required
+            #datec="ngModel" />
+        <div class="alert-danger" *ngIf="datec.errors && f.submitted">
+            <div *ngIf="datec.errors.required">la région est requise</div>
 
-      <br>
-      <br>
-      <br>
-      <div class="col-12">
-
-        <div class="col-md-0 offset-md-11">
-          <button class="btn btn-warning" type="submit">update</button>
         </div>
+    </div>
+
+      <div class="form-group">
+          <div class="row">
+              <div class="col-md-1 offset-md-11">
+                  <button class="btn btn-warning" type="submit">update</button>
+              </div>
+          </div>
       </div>
-    </form>
+  </form>
   </div>
 </div>

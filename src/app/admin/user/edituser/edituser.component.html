@@ -11,7 +11,7 @@
                         <div class="account-settings">
                             <div class="user-profile">
                                 <div class="user-avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin"
+                                    <img src="{{user.image.url}}" alt="user image"
                                         width="150px">
                                 </div>
                                 <h5 class="user-name"> </h5>
@@ -31,8 +31,8 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label for="fullName">Username</label>
-                                            <input type="text" class="form-control" name="nbrunit"
-                                                [(ngModel)]="f.username" required #username="ngModel" />
+                                            <input  disabled type="text" class="form-control" name="nbrunit"
+                                                [(ngModel)]="form.username" required #username="ngModel" />
                                             <div class="alert-danger" *ngIf="username.errors && f.submitted">
                                                 <div *ngIf="username.errors.required">username est requise</div>
                                             </div>
@@ -42,8 +42,8 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label for="lastName">Last Name</label>
-                                            <input type="text" class="form-control" name="lastname"
-                                                [(ngModel)]="f.lastname" required #lastname="ngModel" />
+                                            <input disabled type="text" class="form-control" name="lastname"
+                                                [(ngModel)]="form.lastname" required #lastname="ngModel" />
                                             <div class="alert-danger" *ngIf="lastname.errors && f.submitted">
                                                 <div *ngIf="lastname.errors.required">username est requise</div>
                                             </div>
@@ -53,8 +53,8 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label class="required-field" for="firstname">First name</label>
-                                            <input type="text" class="form-control" name="firstname"
-                                                [(ngModel)]="f.firstname" required #firstname="ngModel" />
+                                            <input disabled type="text" class="form-control" name="firstname"
+                                                [(ngModel)]="form.firstname" required #firstname="ngModel" />
                                             <div class="alert-danger" *ngIf="firstname.errors && f.submitted">
                                                 <div *ngIf="firstname.errors.required">username est requise</div>
                                             </div>
@@ -64,7 +64,7 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" class="form-control" name="phone" [(ngModel)]="f.phone"
+                                            <input disabled type="text" class="form-control" name="phone" [(ngModel)]="form.phone"
                                                 required #phone="ngModel" />
                                             <div class="alert-danger" *ngIf="phone.errors && f.submitted">
                                                 <div *ngIf="phone.errors.required">phone est requise</div>
@@ -75,18 +75,28 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label for="Address">Address</label>
-                                            <input type="text" class="form-control" name="phone" [(ngModel)]="f.phone"
-                                                required #phone="ngModel" />
-                                            <div class="alert-danger" *ngIf="phone.errors && f.submitted">
-                                                <div *ngIf="phone.errors.required">phone est requise</div>
+                                            <input disabled type="text" class="form-control" name="address" [(ngModel)]="form.address"
+                                                required #address="ngModel" />
+                                            <div class="alert-danger" *ngIf="address.errors && f.submitted">
+                                                <div *ngIf="address.errors.required">phone est requise</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" [(ngModel)]="form.email"
+                                                required #email="ngModel" />
+                                            <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                                                <div *ngIf="email.errors.required">email est requise</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <div class="form-group">
                                             <label for="Address">role</label>
-                                            <select name="role" (change)="changeoffer($event)" class="form-control"
-                                                [(ngModel)]="f.role" required #role="ngModel">
+                                            <select name="role" (change)="changerole($event)" class="form-control"
+                                                [(ngModel)]="form.roles" required #role="ngModel">
                                                 <option value="ROLE_ADMIN">ADMIN</option>
                                                 <option value="ROLE_CLIENT">CLIENT</option>
                                                 <option value="ROLE_USER">USER</option>
@@ -96,16 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 mb-3">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" name="email" [(ngModel)]="f.email"
-                                                required #email="ngModel" />
-                                            <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                                                <div *ngIf="email.errors.required">email est requise</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
 
                                     <div class="col-sm-12 mb-3">

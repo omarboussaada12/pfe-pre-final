@@ -22,6 +22,7 @@ import { EditofferComponent } from './admin/offer/editoffer/editoffer.component'
 import { ClientComponent } from './client/client.component';
 import { CareerComponent } from './career/career.component';
 import { ReclamationComponent } from './admin/reclamation/reclamation.component';
+import { DetailComponent } from './admin/commande/detail/detail.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -37,10 +38,11 @@ const routes: Routes =[
     { path: 'admin/user', component: UserComponent },
     { path: 'admin/user/edit/:username', component: EdituserComponent },
     { path: 'admin/user/add', component: AdduserComponent },
-    { path: 'admin/offer', component: OfferComponent },
-    { path: 'admin/offer/edit/:id', component: EditofferComponent },
-    { path: 'admin/offer/add', component:  AddofferComponent},
+    { path: 'admin/service', component: OfferComponent },
+    { path: 'admin/service/edit/:id', component: EditofferComponent },
+    { path: 'admin/service/add', component:  AddofferComponent},
     { path: 'admin/commande', component: CommandeComponent },
+    { path: 'admin/commande/detail/:id', component: DetailComponent },
     { path: 'user/commande', component: CommandeComponent },
     { path: 'user/commande/add', component: AddComponent },
     { path: 'user/commande/update/:id', component: EditComponent },

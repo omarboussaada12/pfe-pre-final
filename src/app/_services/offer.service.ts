@@ -54,7 +54,7 @@ export class OfferService {
   updateOffer(id: any, data: any): Observable<Offer> {
     return this.httpClient
       .put<Offer>(
-        this.endpoint + '/update-offer' + id,
+        this.endpoint + '/update-offer/' + id,
         JSON.stringify(data),
         this.httpHeader
       )
