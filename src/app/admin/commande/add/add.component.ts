@@ -66,9 +66,9 @@ export class AddComponent implements OnInit {
     this.commandeService.addCommande(cq).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['user/commande'])
       },
       err => {
+        
       }
     );
   }

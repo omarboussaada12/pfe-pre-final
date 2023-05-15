@@ -2,6 +2,7 @@
     <header class="jumbotron">
 
     </header>
+    <button  *ngIf="!isadmin" class="btn btn-1 btn-info" type="button"  placement="top"    ngbTooltip="place a feedback" (click)="addreclamation()">ADD</button> 
 <div class="event-schedule-area-two bg-color pad100">
     <div class="container">
         <div class="row">
@@ -23,45 +24,36 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" scope="col">Date</th>
-                                        <th scope="col">Speakers</th>
-                                        <th scope="col">Session</th>
-                                        <th scope="col">Venue</th>
-                                        <th class="text-center" scope="col">Venue</th>
+                                        <th class="text-center" scope="col">#</th>
+                                        <th scope="col">feedback</th>
+                                        <th scope="col">Status</th>
+                                        <th class="text-center" scope="col">action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="inner-box" >
+                                    <tr class="inner-box" *ngFor="let reclamation of reclamtions ; index as i" >
                                         <th scope="row">
                                             <div class="event-date">
-                                                <span>16</span>
-                                                <p>Novembar</p>
+                                                <span>{{i+1}}</span>
                                             </div>
                                         </th>
                                         <td>
-                                            <div class="event-img">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                            </div>
-                                        </td>
-                                        <td>
                                             <div class="event-wrap">
-                                                <h3><a href="#">Harman Kardon</a></h3>
+                                                <h3><div *ngIf="isadmin">{{reclamation.username}}</div></h3>
                                                 <div class="meta">
-                                                    <div class="organizers">
-                                                        <a href="#">Aslan Lingker</a>
-                                                    </div>
-                                                    <div class="categories">
-                                                        <a href="#">Inspire</a>
+                                                    
+                                                    <div class="time">
+                                                        <span>{{reclamation.message}}</span>
                                                     </div>
                                                     <div class="time">
-                                                        <span>05:35 AM - 08:00 AM 2h 25'</span>
+                                                        <span>{{reclamation.date | date: 'dd/MM/yyyy'}}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="r-no">
-                                                <span>Room B3</span>
+                                                <span>{{reclamation.status}}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -76,9 +68,6 @@
                         </div>
                     </div>
                    
-                </div>
-                <div class="primary-btn text-center">
-                    <a href="#" class="btn btn-primary">Download Schedule</a>
                 </div>
             </div>
         </div>

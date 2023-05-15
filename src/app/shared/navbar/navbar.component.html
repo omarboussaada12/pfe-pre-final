@@ -32,12 +32,12 @@
             <span class="nav-link-inner--text">Home</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
+       <!--<li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['Career']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Career</span>
           </a>
-        </li>
+        </li>-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['login']">
             <i class="ni ni-ui-04 d-lg-none"></i>
@@ -96,7 +96,7 @@
           </a>
         </li>
         <li class="nav-item dropdown" *ngIf="showModeratorBoard">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user/commande']">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['reclamation']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">reclamations</span>
           </a>
