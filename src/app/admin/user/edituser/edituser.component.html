@@ -85,7 +85,7 @@
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" name="email" [(ngModel)]="form.email"
+                                            <input disabled type="email" class="form-control" name="email" [(ngModel)]="form.email"
                                                 required #email="ngModel" />
                                             <div class="alert-danger" *ngIf="email.errors && f.submitted">
                                                 <div *ngIf="email.errors.required">email est requise</div>

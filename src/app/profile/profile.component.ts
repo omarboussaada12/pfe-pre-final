@@ -33,9 +33,7 @@ export class ProfileComponent implements OnInit {
               this.router.navigate(['landing'])
             }
           );
-        setTimeout(()=>this.webSocketService.sendMessage("test to all from "+this.user.username),2000);
-        
-        setTimeout(()=>this.webSocketService.sendPrivateMessage(this.user.username,"private  message from  ","ahmed"),2000); 
+      
        
     }
     

@@ -10,41 +10,54 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class WebSocketService {
   private stompClient: Stomp.Client;
   private privateStompClient: Stomp.Client;
-  private allMessagesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private specificMessagesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private UsersNotificationSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private PrivateNotificationSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private AdminsNotificationSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   public frame:any;
-  public connect(username ,token): void {
+  public Userchannel(username ,token): void {
     const socket = new SockJS('http://localhost:8080/ws');
     this.stompClient = Stomp.over(socket);
-    var headers = {'Authorization': 'Bearer ' + token};
+    var headers = {'Authorization':''};
     this.stompClient.connect(headers, (frame) => {
-      console.info('Connected: to ' + frame.getUser);
-      this.stompClient.subscribe('/all/messages', (message) => {
-        this.allMessagesSubject.next(JSON.parse(message.body));
+      this.stompClient.subscribe('/users/messages', (message) => {
+        this.UsersNotificationSubject.next(JSON.parse(message.body));
       });
     });
-
+  }
+  public Privatechannel(username ,token): void {
     const privateSocket = new SockJS('http://localhost:8080/ws');
     this.privateStompClient = Stomp.over(privateSocket);
-
-    var headers = {'Authorization': 'Bearer ' + token};
+   var headers = {'Authorization':'' };
     console.log(headers)
     this.privateStompClient.connect(headers, (frame) => {
-      console.log('Connected: ' + frame);
       this.privateStompClient.subscribe('/specific/'+username, (message) => {
-        this.specificMessagesSubject.next(JSON.parse(message.body));
+        this.PrivateNotificationSubject.next(JSON.parse(message.body));
       });
     });
   }
-
-  public sendMessage(text: string): void {
-    this.stompClient.send('/app/application', {}, JSON.stringify({ text: text }));
+  public Adminchannel(username ,token): void {
+    const socket = new SockJS('http://localhost:8080/ws');
+    this.stompClient = Stomp.over(socket);
+    var headers = {'Authorization':'' };
+    this.stompClient.connect(headers, (frame) => {
+      this.stompClient.subscribe('/admins/messages', (message) => {
+        this.AdminsNotificationSubject.next(JSON.parse(message.body));
+      });
+    });
+  }
+  public sendNotificationUsers(text: string): void {
+    this.stompClient.send('/app/UsersNotif', {}, JSON.stringify({ text: text }));
+  }
+  public sendNotificationAdmins(text: string): void {
+    this.stompClient.send('/app/AdminsNotif', {}, JSON.stringify({ text: text }));
   }
 
-  public sendPrivateMessage(username:string ,text: string, to: string): void {
+  public sendPrivateNotification(username:string ,text: string, to: string): void {
     var message = {
       text: text+username,
       to: to
@@ -52,11 +65,15 @@ export class WebSocketService {
     this.stompClient.send('/app/private/'+username, {}, JSON.stringify(message));
   }
 
-  public getAllMessages(): Observable<any> {
-    return this.allMessagesSubject.asObservable();
+  public getUsersNotification(): Observable<any> {
+    return this.UsersNotificationSubject.asObservable();
   }
 
-  public getSpecificMessages(): Observable<any> {
-    return this.specificMessagesSubject.asObservable();
+  public getPrivateNotification(): Observable<any> {
+    return this.PrivateNotificationSubject.asObservable();
+  }
+
+  public getAdminsNotification(): Observable<any> {
+    return this.AdminsNotificationSubject.asObservable();
   }
 }

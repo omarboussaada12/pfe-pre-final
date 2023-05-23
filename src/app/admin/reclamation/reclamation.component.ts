@@ -56,7 +56,11 @@ export class ReclamationComponent implements OnInit {
   }
   addreclamation()
   {
-    this.router.navigate(['user/commande/add']);
+    this.router.navigate(['reclamation/add']);
+  }
+  detailreclamation(id: any)
+  {
+    this.router.navigate(['reclamation/process',id]);
   }
 
 }

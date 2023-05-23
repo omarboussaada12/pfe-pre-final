@@ -6,7 +6,7 @@
 
         <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
             <div class="form-group">
-                <label for="offername">selectionner un offer</label>
+                <label for="offername">select the offer name *</label>
                 <select name="offer" (change)="changeoffer($event)" class="form-control">
                     <option>--- Select ---</option>
                     <option value="{{off.name}}" *ngFor="let off of offers ">
@@ -15,32 +15,20 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="nbrunit"> nombre d'arbres</label>
+                <label for="nbrunit"> number of trees *</label>
                 <input type="number" class="form-control" name="nbrunit" [(ngModel)]="form.nbrunit" required
                     #nbrunit="ngModel" />
-                <div class="alert-danger" *ngIf="nbrunit.errors && f.submitted">
-                    <div *ngIf="nbrunit.errors.required">nombre d'arbres est requise</div>
-
-                </div>
             </div>
             <div class="form-group">
-                <label for="region"> region</label>
+                <label for="region">address of the location *</label>
                 <input type="text" class="form-control" name="region" [(ngModel)]="form.region" required
                     #region="ngModel" />
-                <div class="alert-danger" *ngIf="region.errors && f.submitted">
-                    <div *ngIf="region.errors.required">la région est requise</div>
-
-                </div>
             </div>
 
             <div class="form-group">
-                <label for="region"> Date</label>
-                <input type="date" class="form-control" name="datec" [(ngModel)]="form.datec"  required
+                <label for="region"> the date for the order *</label>
+                <input type="date" class="form-control" name="datec" [(ngModel)]="form.datec" required
                     #datec="ngModel" />
-                <div class="alert-danger" *ngIf="datec.errors && f.submitted">
-                    <div *ngIf="datec.errors.required">la région est requise</div>
-        
-                </div>
             </div>
 
             <div class="form-group">

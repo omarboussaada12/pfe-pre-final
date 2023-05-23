@@ -7,6 +7,7 @@ import { CommandeService } from 'src/app/_services/commande.service';
 import { OfferService } from 'src/app/_services/offer.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
+import { WebSocketService } from 'src/app/web-socket.service';
 
 @Component({
   selector: 'app-addoffer',
@@ -31,6 +32,7 @@ export class AddofferComponent implements OnInit {
  
  constructor(private http: HttpClient,
    private offerService : OfferService,
+   private webSocketService : WebSocketService,
    private router: Router,) { }
   ngOnInit(): void {
   }
@@ -79,6 +81,7 @@ export class AddofferComponent implements OnInit {
         this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
           data => {
             this.router.navigate(['admin/service/'])
+            this.webSocketService.sendNotificationUsers(" New service have been added ");
            
           },
           err => {

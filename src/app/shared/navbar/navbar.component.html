@@ -84,7 +84,7 @@
         </li>
         <!-- client nav -->
         <li class="nav-item dropdown" *ngIf="showModeratorBoard">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['admin/commande']">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user/commande']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">commandes</span>
           </a>
@@ -109,14 +109,16 @@
           </a>
         </li>
         <li class="nav-item" ngbDropdown placement="bottom-right" *ngIf="isLoggedIn">
-          <a class="nav-link nav-link-icon no-caret" id="navbar-default_dropdown_1" ngbDropdownToggle>
+          <div class="notification-container">
+          <button class="notification-button" (click)="toggleNotifications()" ngbDropdownToggle>
             <i class="ni ni-bell-55 ni-x2"></i>
-            <span class="nav-link-inner--text d-lg-none">Notification</span>
-          </a>
-          <div class="dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1" ngbDropdownMenu>
-            <a class="dropdown-item" href="javascript:void(0)" *ngFor="let message of messages" >{{ message }}</a>
-            <div *ngif="!nonotification"><a class="dropdown-item" href="javascript:void(0)"  >{{ message }}</a></div> 
+            <span class="notification-badge">{{notificationcount}}</span>
+          </button>
+          <div class="dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1" ngbDropdownMenu [hidden]="!showNotifications">
+            <li *ngFor="let message of messages" class="dropdown-item">{{ message }}</li>
+            <div *ngIf="!messages.length" class="dropdown-item">No notifications</div>
           </div>
+        </div>
         </li>
         
         <li class="nav-item dropdown" *ngIf="isLoggedIn">

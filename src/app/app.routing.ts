@@ -23,10 +23,14 @@ import { ClientComponent } from './client/client.component';
 import { CareerComponent } from './career/career.component';
 import { ReclamationComponent } from './admin/reclamation/reclamation.component';
 import { DetailComponent } from './admin/commande/detail/detail.component';
+import { AddreclamationComponent } from './admin/reclamation/addreclamation/addreclamation.component';
+import { EditreclamationComponent } from './admin/reclamation/editreclamation/editreclamation.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
     { path: 'reclamation',             component: ReclamationComponent },
+    { path: 'reclamation/add',             component: AddreclamationComponent },
+    { path: 'reclamation/process/:id',             component: EditreclamationComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'user-profile/image', component: ImageComponent },
     { path: 'user-profile/edit',     component: EditPComponent },

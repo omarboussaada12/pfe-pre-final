@@ -30,7 +30,7 @@ export class ReclamationService {
       .get<any>(this.endpoint + '/get-reclamation/' + id)
       .pipe(retry(1), catchError(this.processError));
   }
-  addCommande(data: any): Observable<any> {
+  addReclamation(data: any): Observable<any> {
     return this.httpClient
       .post<any>(
         this.endpoint + '/add-reclamation',
@@ -39,31 +39,25 @@ export class ReclamationService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
-  /*change function in the backend
-  updateCommande(id: any, data: any): Observable<Commande> {
-    return this.httpClient
-      .put<Commande>(
-        this.endpoint + '/update-Commande/' + id,
-        JSON.stringify(data),
-        this.httpHeader
-      )
-      .pipe(retry(1), catchError(this.processError));
-  }*/
   deleteCommande(id: any) {
     return this.httpClient
       .delete<Commande>(this.endpoint + '/delete-Commande/' + id, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
-  validerCommande(id: any) {
-    return this.httpClient
-      .put<Commande>(this.endpoint + '/valider-Commande/' + id, this.httpHeader)
-      .pipe(retry(1), catchError(this.processError));
+  processreclamation(id: any, reponse: string) {
+    const url = `${this.endpoint}/ReclamationProcessing/${id}`;
+    const body = reponse;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.put<any>(url, body, httpOptions).pipe(
+      retry(1),
+      catchError(this.processError)
+    );
   }
-  refuserCommande(id: any) {
-    return this.httpClient
-      .put<Commande>(this.endpoint + '/refuser-Commande/' + id, this.httpHeader)
-      .pipe(retry(1), catchError(this.processError));
-  }
+  
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

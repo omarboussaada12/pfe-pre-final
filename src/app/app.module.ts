@@ -34,6 +34,8 @@ import { ReclamationComponent } from './admin/reclamation/reclamation.component'
 import { DatePipe } from '@angular/common';
 import { DetailComponent } from './admin/commande/detail/detail.component';
 import { WebSocketService } from './web-socket.service';
+import { AddreclamationComponent } from './admin/reclamation/addreclamation/addreclamation.component';
+import { EditreclamationComponent } from './admin/reclamation/editreclamation/editreclamation.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { WebSocketService } from './web-socket.service';
     ClientComponent,
     CareerComponent,
     ReclamationComponent,
-    DetailComponent
+    DetailComponent,
+    AddreclamationComponent,
+    EditreclamationComponent
   ],
   imports: [
     BrowserModule,

@@ -2,17 +2,16 @@
     <header class="jumbotron">
 
     </header>
-<p>detail works!</p>
 <div class="container bootstrap snippets bootdey">
     <div class="row ng-scope">
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body text-center">
-                    <div class="pv-lg"><img class="center-block img-responsive img-circle img-thumbnail thumb96" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Contact"></div>
-                    <h3 class="m0 text-bold">{{commande.username}}</h3>
-                    <div class="mv-lg">
-                        <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation text. Have fun!</p>
-                    </div>
+                    <div class="pv-lg"><img class="center-block img-responsive img-circle img-thumbnail thumb96" src="{{user.image.url}}" alt="Contact"></div>
+                    <h6 class="m0 text-bold"> username : {{user.username}}</h6>
+                    <h6 class="m0 text-bold"> full name : {{user.firstname }} {{user.lastname }}</h6>
+                    <h6 class="m0 text-bold"> phone : {{user.phone}}</h6>
+                    <h6 class="m0 text-bold"> email :  {{user.email}}</h6>
                 </div>
             </div>
             <div class="panel panel-default hidden-xs hidden-sm">
@@ -69,9 +68,9 @@
                                     <label class="col-sm-2 control-label" for="status">status</label>
                                     <div class="col-sm-10">
                                     <select name="status"  (change)="changestatus($event)" class="form-control">
-                                        <option  disabled selected  value="waiting for confirmation">waiting for confirmation</option>
-                                        <option  value="refuser">refuser</option>
-                                        <option value="confimer">confimer  </option>
+                                        <option  disabled selected  value="{{ commande.status }}">{{ commande.status }}</option>
+                                        <option  value="refuser">denied</option>
+                                        <option value="confimer">approved  </option>
                                     </select>
                                     </div>
                                 </div>
