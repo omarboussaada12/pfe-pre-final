@@ -12,7 +12,7 @@ import { Commande } from '../_model/Commande';
 export class CommandeService {
 
   endpoint = 'http://localhost:8080';
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,9 +23,9 @@ export class CommandeService {
       .get<Commande>(this.endpoint + '/get-all-commandes/')
       .pipe(retry(1), catchError(this.processError));
   }
-  getCommandesuser(username:any): Observable<Commande> {
+  getCommandesuser(username: any): Observable<Commande> {
     return this.httpClient
-      .get<Commande>(this.endpoint + '/get-all-commandesbyuser/'+username)
+      .get<Commande>(this.endpoint + '/get-all-commandesbyuser/' + username)
       .pipe(retry(1), catchError(this.processError));
   }
   getSingleCommande(id: any): Observable<Commande> {
@@ -86,6 +86,6 @@ export class Commandereq {
   username?: string;
   region?: string;
   nbrunit?: number;
-  datec?:Date ;
+  datec?: Date;
 }
 

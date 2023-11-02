@@ -20,6 +20,10 @@ export class ImageComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
+  errorMessage = '';
+  isSuccessfulimage = '';
+  isSuccessful = false;
+  isUpFailed = false;
   constructor(private token: TokenStorageService,
     private userService: UserService,
     private router: Router) { }
@@ -54,23 +58,20 @@ export class ImageComponent implements OnInit {
         this.currentFile = file;
 
         this.userService.updateUserimage(this.currentUser.username, this.currentFile).subscribe(
-          (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
+          data  => {
+            this.isSuccessful = true;
+            this.isUpFailed = false;
+            this.isSuccessfulimage = "picture have been updated successfully";
+            setTimeout(() => {
               this.router.navigate(['user-profile']);
-            }
+            }, 3000);      
           },
           (err: any) => {
+            this.isSuccessful = false;
+            this.isUpFailed = true;
             console.log(err);
             this.progress = 0;
-
-            if (err.error && err.error.message) {
-              this.message = err.error.message;
-            } else {
-              this.message = 'Could not upload the file!';
-            }
-
+            this.errorMessage = err.error.message;
             this.currentFile = undefined;
           });
 

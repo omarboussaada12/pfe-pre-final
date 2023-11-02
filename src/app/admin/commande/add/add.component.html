@@ -1,43 +1,49 @@
 <div *ngIf="show">
-    <div class="container">
-        <header class="jumbotron">
-
-        </header>
-
-        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
-            <div class="form-group">
-                <label for="offername">select the offer name *</label>
-                <select name="offer" (change)="changeoffer($event)" class="form-control">
-                    <option>--- Select ---</option>
-                    <option value="{{off.name}}" *ngFor="let off of offers ">
-                        {{off.name}}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="nbrunit"> number of trees *</label>
-                <input type="number" class="form-control" name="nbrunit" [(ngModel)]="form.nbrunit" required
-                    #nbrunit="ngModel" />
-            </div>
-            <div class="form-group">
-                <label for="region">address of the location *</label>
-                <input type="text" class="form-control" name="region" [(ngModel)]="form.region" required
-                    #region="ngModel" />
-            </div>
-
-            <div class="form-group">
-                <label for="region"> the date for the order *</label>
-                <input type="date" class="form-control" name="datec" [(ngModel)]="form.datec" required
-                    #datec="ngModel" />
-            </div>
-
-            <div class="form-group">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-1 offset-md-11">
-                        <button class="btn btn-warning" type="submit">add</button>
+                    <div class="col-lg-12">
+                        <div class="section-title text-center">
+                            <div class="title-text">
+                                <br>
+                                <br>
+                                <h2>place an order</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <form name="form" (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="form-group">
+                        <label for="offername">Select the offer name *</label>
+                        <select name="offer" (change)="changeoffer($event)" class="form-control">
+                            <option disabled selected>--- Select ---</option>
+                            <option value="{{off.name}}" *ngFor="let off of offers">{{off.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nbrunit">Number of trees *</label>
+                        <input type="number" class="form-control" name="nbrunit" [(ngModel)]="form.nbrunit" required
+                            #nbrunit="ngModel" />
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Address of the location *</label>
+                        <input type="text" class="form-control" name="region" [(ngModel)]="form.region" required
+                            #region="ngModel" />
+                    </div>
+                    <div class="form-group">
+                        <label for="region">The date for the order *</label>
+                        <input type="date" class="form-control" name="datec" [(ngModel)]="form.datec" required
+                            #datec="ngModel" />
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                    <div *ngIf="showThankYouMessage" class="alert alert-success text-center">
+                        Thank you! Your order has been placed.
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>

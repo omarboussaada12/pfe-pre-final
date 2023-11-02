@@ -12,15 +12,6 @@ export class EditPComponent implements OnInit {
   currentUser: any; 
   user :any = { username :'' , firstname :'' , lastname :'' , phone :'' ,address :'' , email :'', image :'' } 
   content?: string;
-  form: any = {
-    username: null,
-    firstname: null,
-    lastname: null,
-    phone: null,
-    address: null,
-    email: null,
-    password: null
-  };
   isSuccessful = false;
   isUpFailed = false;
   errorMessage = '';
@@ -57,23 +48,28 @@ export class EditPComponent implements OnInit {
     this.router.navigate(['user-profile/updateimage']);
   }
   onSubmit(): void {
-    const { firstname,lastname,phone,address, email,  } = this.form;
     const up: userP = new userP();
-    up.firstname = firstname ;
-    up.lastname = lastname ;
-    up.email = email ;
-    up.phone = phone;
-    up.address = address ;
+    up.firstname = this.user.firstname ;
+    up.lastname = this.user.lastname ;
+    up.email = this.user.email ;
+    up.phone = this.user.phone;
+    up.address = this.user.address ;
     up.role = this.user.roles[0].name ; 
     
     this.userService.updateUserinfo(this.currentUser.username,up).subscribe(
       data => {
         this.isSuccessful = true;
         this.isUpFailed = false;
+        setTimeout(() => {
+          this.router.navigate(['user-profile']);
+        }, 2000);
       },
       err => {
         this.errorMessage = err.error.message;
         this.isUpFailed = true;
+        setTimeout(() => {
+          this.isUpFailed = false;
+        }, 3000);
       }
     );
   }

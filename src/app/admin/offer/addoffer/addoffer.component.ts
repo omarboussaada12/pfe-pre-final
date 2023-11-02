@@ -77,22 +77,14 @@ export class AddofferComponent implements OnInit {
   }else{
     this.offerService.addOffer(this.offer).subscribe(
       data => {
-        this.isSuccessful = true;
         this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
-          data => {
-            this.router.navigate(['admin/service/'])
-            this.webSocketService.sendNotificationUsers(" New service have been added ");
-           
-          },
-          err => {
-            this.errorMessage = err.error.message;
+          data => { 
           }
         );
-      },
-      err => {
-        this.errorMessage = err.error.message;
       }
     );
+    this.webSocketService.sendNotificationUsers(" New service have been added ");
+    this.router.navigate(['admin/service/'])
   }
  }
 }

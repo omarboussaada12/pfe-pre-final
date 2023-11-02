@@ -50,7 +50,7 @@ export class UserService {
       .pipe(retry(1), catchError(this.processError));
   }
  
-  updateUserimage(username: any, file: File):Observable<HttpEvent<any>> {
+  updateUserimage(username: any, file: File):Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
     const req = new HttpRequest('PUT', `${this.endpoint}/update-user-image/`+ username, formData, {
@@ -60,19 +60,13 @@ export class UserService {
     return this.httpClient.request(req);
   }
 
-  updateUserinfo(username: any, data : any): Observable<userP> {  
-    return this.httpClient
-      .put<userP>(
-        this.endpoint + '/update-user-info/' + username,
-        JSON.stringify(data),
-        this.httpHeader
-      )
-      .pipe(retry(1), catchError(this.processError));
+  updateUserinfo(username: any, data : any): Observable<any> {  
+    return this.httpClient.put<userP>( this.endpoint + '/update-user-info/' + username, JSON.stringify(data),this.httpHeader);
   }
   /*change function in the backend*/
-  deleteUser(id: any) {
+  deleteUser(username: any) {
     return this.httpClient
-      .delete<User>(this.endpoint + '/delete-user/' + id, this.httpHeader)
+      .delete<User>(this.endpoint + '/delete-user/' + username, this.httpHeader)
       .pipe(retry(1), catchError(this.processError));
   }
   updateroleUser(username : any , role :any) {

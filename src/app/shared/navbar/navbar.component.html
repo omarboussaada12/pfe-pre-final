@@ -1,7 +1,7 @@
 <nav id="navbar-main"
   class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
   <div class="container">
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['landing']">
       <img src="./assets/img/brand/logo.png">
     </a>
     <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
@@ -54,7 +54,7 @@
         <li class="nav-item dropdown" *ngIf="showuserBoard">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user/commande/add']">
             <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">commander</span>
+            <span class="nav-link-inner--text">order</span>
           </a>
         </li>
         <!-- admin nav -->
@@ -83,19 +83,20 @@
           </a>
         </li>
         <!-- client nav -->
-        <li class="nav-item dropdown" *ngIf="showModeratorBoard">
+        <li class="nav-item dropdown" *ngIf="showClientBoard">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['user/commande']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">commandes</span>
           </a>
         </li>
-        <li class="nav-item dropdown" *ngIf="showModeratorBoard">
+        <!--<li class="nav-item dropdown" *ngIf="showClientBoard">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['client/oasis']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">oasis</span>
           </a>
-        </li>
-        <li class="nav-item dropdown" *ngIf="showModeratorBoard">
+        </li>-->
+
+        <li class="nav-item dropdown" *ngIf="showClientBoard">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="['reclamation']">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">reclamations</span>

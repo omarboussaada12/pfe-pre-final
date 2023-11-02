@@ -1,171 +1,135 @@
-<p>edit works!</p>
+
 <main class="profile-page">
-    <section class="section-profile-cover section-shaped my-0">
-      <!-- Circles background -->
-      <div class="shape shape-style-1 shape-primary alpha-4">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <!-- SVG separator -->
-      
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="card card-profile shadow mt--300">
-          <div class="px-4">
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a href="javascript:void(0)">
-                    <img src="{{user.image.url}}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="height: 150px; width: 150px;">
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-                <div class="card-profile-actions py-4 mt-lg-0">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4" routerLink="/user-profile/edit">edit</a>
-                  <a href="javascript:void(0)" class="btn btn-sm btn-default float-right" routerLink="/user-profile/image">update image</a>
-                </div>
-              </div>
-              <div class="col-lg-4 order-lg-1">
-                <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
-                </div>
+  <section class="section-profile-cover section-shaped my-0">
+    <!-- Circles background -->
+    <div class="shape shape-style-1 shape-primary alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- SVG separator -->
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+        <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <img src="{{ user.image.url }}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="height: 150px; width: 150px;">
               </div>
             </div>
-            <div class="text-center mt-5">
-              <h3>{{user.username}}
-                <span class="font-weight-light"></span>
-              </h3>
-               <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div class="card-profile-actions py-4 mt-lg-0">
+                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4" routerLink="/user-profile/edit">edit</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-default float-right" routerLink="/user-profile/image">update image</a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1">
+             <!-- <div class="card-profile-stats d-flex justify-content-center">
+                <div>
+                  <span class="heading">22</span>
+                  <span class="description">Friends</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Photos</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Comments</span>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="text-center mt-5">
+            <h3>{{ user.username }}
+              <span class="font-weight-light"></span>
+            </h3>
+            
+            <!-- Integrated form for updating profile information -->
+            <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                   </div>
-                  <input  placeholder="{{user.firstname}}" type="text" class="form-control" name="firstname" [(ngModel)]="form.firstname" required
-                    minlength="3" maxlength="20" #firstname="ngModel" />
-                  <div class="alert-danger" *ngIf="firstname.errors && f.submitted">
-                    <div *ngIf="firstname.errors.required">firstname is required</div>
-                    <div *ngIf="firstname.errors.minlength">
-                      firstname must be at least 3 characters
-                    </div>
-                    <div *ngIf="firstname.errors.maxlength">
-                      firstname must be at most 20 characters
-                    </div>
+                  <input placeholder="{{ user.firstname }}" type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" required minlength="3" maxlength="20" #firstname="ngModel" />
+                  <div class="alert alert-danger" *ngIf="firstname.errors && f.submitted">
+                    <div *ngIf="firstname.errors.required">First name is required</div>
+                    <div *ngIf="firstname.errors.minlength">First name must be at least 3 characters</div>
+                    <div *ngIf="firstname.errors.maxlength">First name must be at most 20 characters</div>
                   </div>
                 </div>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                   </div>
-                  <input placeholder="{{user.lastname}}" type="text" class="form-control" name="lastname" [(ngModel)]="form.lastname" required
-                    minlength="3" maxlength="20" #lastname="ngModel" />
-                  <div class="alert-danger" *ngIf="lastname.errors && f.submitted">
-                    <div *ngIf="lastname.errors.required">lastname is required</div>
-                    <div *ngIf="lastname.errors.minlength">
-                      lastname must be at least 3 characters
-                    </div>
-                    <div *ngIf="lastname.errors.maxlength">
-                      lastname must be at most 20 characters
-                    </div>
+                  <input placeholder="{{ user.lastname }}" type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname" required minlength="3" maxlength="20" #lastname="ngModel" />
+                  <div class="alert alert-danger" *ngIf="lastname.errors && f.submitted">
+                    <div *ngIf="lastname.errors.required">Last name is required</div>
+                    <div *ngIf="lastname.errors.minlength">Last name must be at least 3 characters</div>
+                    <div *ngIf="lastname.errors.maxlength">Last name must be at most 20 characters</div>
                   </div>
                 </div>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
                   </div>
-                  <input placeholder="{{user.phone}}" type="text" class="form-control" name="phone" [(ngModel)]="form.phone" required minlength="8"
-                    maxlength="15" #phone="ngModel" />
-                  <div class="alert-danger" *ngIf="phone.errors && f.submitted">
-                    <div *ngIf="phone.errors.required">phone is required</div>
-                    <div *ngIf="phone.errors.minlength">
-                      phone must be at least 8 number
-                    </div>
-                    <div *ngIf="phone.errors.maxlength">
-                      phone must be at most 15 number
-                    </div>
+                  <input placeholder="{{ user.phone }}" type="text" class="form-control" name="phone" [(ngModel)]="user.phone" required minlength="8" maxlength="15" #phone="ngModel" />
+                  <div class="alert alert-danger" *ngIf="phone.errors && f.submitted">
+                    <div *ngIf="phone.errors.required">Phone is required</div>
+                    <div *ngIf="phone.errors.minlength">Phone must be at least 8 numbers</div>
+                    <div *ngIf="phone.errors.maxlength">Phone must be at most 15 numbers</div>
                   </div>
                 </div>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-building"></i></span>
                   </div>
-                  <input placeholder="{{user.address}}" type="text" class="form-control" name="address" [(ngModel)]="form.address" required
-                    minlength="8" maxlength="50" #address="ngModel" />
-                  <div class="alert-danger" *ngIf="address.errors && f.submitted">
-                    <div *ngIf="address.errors.required">address is required</div>
-                    <div *ngIf="address.errors.minlength">
-                      address must be at least 8 characters
-                    </div>
-                    <div *ngIf="address.errors.maxlength">
-                      address must be at most 15 characters
-                    </div>
-                  </div>
+                  <input placeholder="{{ user.address }}" type="text" class="form-control" name="address" [(ngModel)]="user.address" required minlength="8" maxlength="50" #address="ngModel" />
+                  <div class="alert alert-danger" *ngIf="address.errors && f.submitted">
+                    <div *ngIf="address.errors.required">Address is required</div>
+                    <div *ngIf="address.errors.minlength">Address must be at least 8 characters</div>
+                    <div *ngIf="address.errors.maxlength">Address must be at most 50 characters</div>
                   </div>
                 </div>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                   </div>
-                  <input placeholder="{{user.email}}" type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
-                    #email="ngModel" />
-                  <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                  <input placeholder="{{ user.email }}" type="email" class="form-control" name="email" [(ngModel)]="user.email" required email #email="ngModel" />
+                  <div class="alert alert-danger" *ngIf="email.errors && f.submitted">
                     <div *ngIf="email.errors.required">Email is required</div>
-                    <div *ngIf="email.errors.email">
-                      Email must be a valid email address
-                    </div>
+                    <div *ngIf="email.errors.email">Email must be a valid email address</div>
                   </div>
                 </div>
-                </div>
-               
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block"> Edit </button>
-                </div>
-
-                <div class="alert alert-warning" *ngIf="f.submitted && isUpFailed">
-                  Signup failed!<br />{{ errorMessage }}
-                </div>
-                <div class="alert alert-success" *ngIf="isSuccessful">
-                  Your registration is successful!
-                </div>
-              </form>
-            
-            </div>
-            <div class="mt-5 py-5 border-top text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-9">
-                  <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
-                  <a href="javascript:void(0)">Show more</a>
-                </div>
               </div>
-            </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-block">Edit</button>
+              </div>
+              <div class="alert alert-warning" *ngIf="f.submitted && isUpFailed">
+                Update failed!<br />{{ errorMessage }}
+              </div>
+              <div class="alert alert-success" *ngIf="isSuccessful">
+                Your profile has been updated successfully!
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
     </section>
-  </main>
-  
+    </main>

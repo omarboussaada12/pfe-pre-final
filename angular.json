@@ -56,14 +56,14 @@
               "namedChunks": true,
               "buildOptimizer": false,
               "optimization": {
-                "scripts": true,
+                "scripts": false,
                 "styles": {
                   "minify": false,
                   "inlineCritical": true
                 },
                 "fonts": true
               },
-              "outputHashing": "all"
+              "outputHashing": "none"
             }
           }
         },
@@ -71,6 +71,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "argon-design-system-angular:build"
+            
           },
           "configurations": {
             "production": {

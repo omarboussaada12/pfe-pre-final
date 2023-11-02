@@ -21,6 +21,20 @@
         <div class="card card-profile shadow mt--300">
           <div class="px-4">
             <br>
+           
+            <div class="text-center mt-5">
+              <h2>
+                <span class="font-weight-light" placement="left" ngbTooltip="username"><i class="ni ni-circle-08"></i></span>
+                {{user.username}}
+              </h2>
+              <div class="h5 font-weight-300" ><i class="ni ni-single-02" placement="left"  ngbTooltip="firstname & lastname">  </i>  {{user.firstname}} {{user.lastname}}</div>
+              <div class="h5 font-weight-300"  ><i class="ni ni-email-83" placement="left" ngbTooltip="email">  </i>{{user.email}}</div>
+              <div class="h5 font-weight-300" ><i class="ni ni-mobile-button"  placement="left" ngbTooltip="phone">  </i>{{user.phone}}</div>
+              <div class="h5 font-weight-300" ><i class="ni ni-building"  placement="left" ngbTooltip="address"></i>
+                {{user.address}}</div>
+                <br>
+                <br>
+            </div>
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
@@ -35,19 +49,12 @@
                   Upload
                 </button>
               </div>
-            </div>
-            <div class="text-center mt-5">
-              <h2>
-                <span class="font-weight-light" placement="left" ngbTooltip="username"><i class="ni ni-circle-08"></i></span>
-                {{user.username}}
-              </h2>
-              <div class="h5 font-weight-300" ><i class="ni ni-single-02" placement="left"  ngbTooltip="firstname & lastname">  </i>  {{user.firstname}} {{user.lastname}}</div>
-              <div class="h5 font-weight-300"  ><i class="ni ni-email-83" placement="left" ngbTooltip="email">  </i>{{user.email}}</div>
-              <div class="h5 font-weight-300" ><i class="ni ni-mobile-button"  placement="left" ngbTooltip="phone">  </i>{{user.phone}}</div>
-              <div class="h5 font-weight-300" ><i class="ni ni-building"  placement="left" ngbTooltip="address"></i>
-                {{user.address}}</div>
-                <br>
-                <br>
+              <div class="alert alert-warning" *ngIf="isUpFailed">
+                Update failed!<br />{{ errorMessage }}
+              </div>
+              <div class="alert alert-success" *ngIf="isSuccessful">
+                Your profile has been updated successfully!
+              </div>
             </div>
             <!-- <div class="mt-5 py-5 border-top text-center">
               <div class="row justify-content-center">

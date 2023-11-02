@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
  
     this.userService.getAdminBoard().subscribe(
       data => {
-        this.content = data;
+       this.content = data;
        this.show=true;
        this.fetchUsers();
       },
@@ -44,5 +44,11 @@ export class UserComponent implements OnInit {
   }
   update(username: any){
     this.router.navigate(['admin/user/edit/',username]);
+  }
+  Delete(username: any){
+    return this.userService.deleteUser(username).subscribe((res: {}) => {
+     
+    });
+    this.fetchUsers() ; 
   }
 }

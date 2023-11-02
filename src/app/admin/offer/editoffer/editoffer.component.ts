@@ -75,6 +75,7 @@ export class EditofferComponent implements OnInit {
       this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
         data => {
           this.isSuccessfulimage = true;
+          this.router.navigate(['admin/service'])
         },
         err => {
           this.errorMessage = err.error.message;

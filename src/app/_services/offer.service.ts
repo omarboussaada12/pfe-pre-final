@@ -11,7 +11,7 @@ import { Offer } from '../_model/Offer';
 export class OfferService {
 
   endpoint = 'http://localhost:8080';
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -32,33 +32,32 @@ export class OfferService {
       .get<Offer>(this.endpoint + '/get-Offer/' + id)
       .pipe(retry(1), catchError(this.processError));
   }
-  addOffer(data: any): Observable<Offer> {
+  addOffer(data: any): Observable<any> {
     return this.httpClient
       .post<Offer>(
         this.endpoint + '/add-Offer',
         JSON.stringify(data),
         this.httpHeader
       )
-      .pipe(retry(1), catchError(this.processError));
+     
   }
-  offerimage(offername: any, file: File):Observable<HttpEvent<any>> {
+  offerimage(offername: any, file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('PUT', `${this.endpoint}/offer-image/`+ offername, formData, {
+    const req = new HttpRequest('PUT', `${this.endpoint}/offer-image/` + offername, formData, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.httpClient.request(req);
   }
   /*change function in the backend*/
-  updateOffer(id: any, data: any): Observable<Offer> {
+  updateOffer(id: any, data: any): Observable<any> {
     return this.httpClient
       .put<Offer>(
         this.endpoint + '/update-offer/' + id,
         JSON.stringify(data),
         this.httpHeader
       )
-      .pipe(retry(1), catchError(this.processError));
   }
   deleteOffer(id: any) {
     return this.httpClient

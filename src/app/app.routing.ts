@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
@@ -27,7 +25,6 @@ import { AddreclamationComponent } from './admin/reclamation/addreclamation/addr
 import { EditreclamationComponent } from './admin/reclamation/editreclamation/editreclamation.component';
 
 const routes: Routes =[
-    { path: 'home',             component: HomeComponent },
     { path: 'reclamation',             component: ReclamationComponent },
     { path: 'reclamation/add',             component: AddreclamationComponent },
     { path: 'reclamation/process/:id',             component: EditreclamationComponent },
@@ -57,7 +54,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [RouterModule],
 })

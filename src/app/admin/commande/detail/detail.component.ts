@@ -82,7 +82,7 @@ export class DetailComponent implements OnInit {
   onsubmite() {
     console.log(this.form.status);
     if (confirm("Are you sure to  " + this.form.status + " this commande")) {
-      if (this.form.status === "confimer") {
+      if (this.form.status === "approved") {
         this.commandeService.validerCommande(+this.route.snapshot.params['id']).subscribe(
           data => {
             this.webSocketService.sendPrivateNotification(this.commande.username, " your order have been processed ", this.commande.username);
@@ -95,7 +95,7 @@ export class DetailComponent implements OnInit {
         );
 
       }
-      if (this.form.status === "refuser") {
+      if (this.form.status === "denied") {
         this.commandeService.refuserCommande(+this.route.snapshot.params['id']).subscribe(
           data => {
             this.webSocketService.sendPrivateNotification(this.commande.username, " your order have been processed ", this.commande.username);

@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-  messages: string[] = [];
+  messages: String[] = [];
 
   title(title: any) {
     throw new Error('Method not implemented.');
@@ -24,10 +24,10 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   showAdminBoard = false;
   showuserBoard = false;
-  showModeratorBoard = false;
+  showClientBoard = false;
   username?: string;
   notificationcount = 0;
-  showNotifications = false; 
+  showNotifications = false;
   constructor(public location: Location,
     private router: Router,
     private tokenStorageService: TokenStorageService,
@@ -38,25 +38,25 @@ export class NavbarComponent implements OnInit {
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    if(this.isLoggedIn) {
+    if (this.isLoggedIn) {
       const token = this.tokenStorageService.getToken();
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.showuserBoard = this.roles.includes('ROLE_USER');
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_CLIENT');
+      this.showClientBoard = this.roles.includes('ROLE_CLIENT');
       this.username = user.username;
-
+     
       if (this.showAdminBoard) {
-        this.webSocketService.Adminchannel(this.username, token);
+        this.webSocketService.Adminchannel(this.username);
         this.webSocketService.getAdminsNotification().subscribe((message) => {
           this.messages.unshift(message.text);
           this.notificationcount++;
         });
       }
-      if (this.showModeratorBoard) {
-        this.webSocketService.Userchannel(this.username, token);
-        this.webSocketService.Privatechannel(this.username, token);
+      if (this.showClientBoard) {
+        this.webSocketService.Userchannel(this.username);
+        this.webSocketService.Privatechannel(this.username);
         this.webSocketService.getUsersNotification().subscribe((message) => {
           this.messages.unshift(message.text);
           this.notificationcount++;
@@ -84,41 +84,49 @@ export class NavbarComponent implements OnInit {
       this.location.subscribe((ev: PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
       });
+      this.StartNotification(this.username);
     }
   }
-    logout(): void {
-      this.tokenStorageService.signOut();
-      this.isLoggedIn = !!this.tokenStorageService.getToken();
-      window.location.reload();
-    }
-    toggleNotifications() {
-      if(this.showNotifications === false)
-      {
-        this.showNotifications =true
-        
-      }else
-      {
-        this.showNotifications =false 
-        this.notificationcount =0 
-      }
-    }
-    isHome() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
+ 
+  StartNotification(username :any)
+  {
+    return this.webSocketService.getNotification(username).subscribe((message) => {
+      this.messages = message.map(item => item.text);
+    });
+  }
+  
+  logout(): void {
+    this.webSocketService.disconnect();
+    this.tokenStorageService.signOut();
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    window.location.reload();
+  }
+  toggleNotifications() {
+    if (this.showNotifications === false) {
+      this.showNotifications = true
 
-      if (titlee === '#/home') {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-    isDocumentation() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if (titlee === '#/documentation') {
-        return true;
-      }
-      else {
-        return false;
-      }
+    } else {
+      this.showNotifications = false
+      this.notificationcount = 0
     }
   }
+  isHome() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+
+    if (titlee === '#/home') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  isDocumentation() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee === '#/documentation') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}

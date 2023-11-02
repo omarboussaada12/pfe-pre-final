@@ -19,6 +19,7 @@ export class AddComponent implements OnInit {
     region: "",
     datec: Date
   };
+  showThankYouMessage = false;
   currentUser: any;
   content?: string;
   show: boolean = false;
@@ -92,11 +93,13 @@ export class AddComponent implements OnInit {
 
       this.commandeService.addCommande(cq).subscribe(
         data => {
-          this.webSocketService.sendNotificationAdmins("New order has been placed by " + cq.username);
-          this.router.navigate(['user/commande']);
+          this.webSocketService.sendNotificationAdmins("New order has been placed");
+          this.showThankYouMessage = true;
+          setTimeout(() => {
+            this.router.navigate(['user/commande']);
+          }, 2000);      
         },
         err => {
-          // Handle error
         }
       );
     } else {

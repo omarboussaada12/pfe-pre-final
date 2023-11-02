@@ -9,7 +9,7 @@ import { Commande } from '../_model/Commande';
 export class ReclamationService {
 
   endpoint = 'http://localhost:8080';
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -20,9 +20,9 @@ export class ReclamationService {
       .get<any>(this.endpoint + '/get-all-reclamation')
       .pipe(retry(1), catchError(this.processError));
   }
-  getreclamationuser(username:any): Observable<any> {
+  getreclamationuser(username: any): Observable<any> {
     return this.httpClient
-      .get<any>(this.endpoint + '/get-reclamation-byuser/'+username)
+      .get<any>(this.endpoint + '/get-reclamation-byuser/' + username)
       .pipe(retry(1), catchError(this.processError));
   }
   getSinglereclamtion(id: any): Observable<any> {
@@ -57,7 +57,7 @@ export class ReclamationService {
       catchError(this.processError)
     );
   }
-  
+
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
@@ -77,6 +77,6 @@ export class Commandereq {
   username?: string;
   region?: string;
   nbrunit?: number;
-  datec?:Date ;
+  datec?: Date;
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { isEmpty } from 'rxjs';
 import { Commande } from 'src/app/_model/Commande';
 import { CommandeService } from 'src/app/_services/commande.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
@@ -28,7 +29,7 @@ export class CommandeComponent implements OnInit {
     const currentUser = this.token.getUser();
     this.userService.getModeratorBoard().subscribe(
       data => {
-        this.content = data;
+       this.content = data;
        this.show=true;
        if(currentUser.roles == 'ROLE_ADMIN')
        {
@@ -37,6 +38,7 @@ export class CommandeComponent implements OnInit {
        }else
        {
        this.fetchcommandeU(currentUser.username);
+
        }
       },
       err => {
@@ -44,6 +46,7 @@ export class CommandeComponent implements OnInit {
         this.show=false;
         this.router.navigate(['landing'])
       }
+      
     );
    
     
@@ -51,12 +54,13 @@ export class CommandeComponent implements OnInit {
   fetchcommandeA() {
     return this.commandeService.getCommandesadmin().subscribe((res: {}) => {
       this.commandes = res;
+     
     });
   }
   fetchcommandeU(username : String) {
     return this.commandeService.getCommandesuser(username).subscribe((res: {}) => {
       this.commandes = res;
-      console.log(res);
+     
     });
   }
   editcommande(id:any)
