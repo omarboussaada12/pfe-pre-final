@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit {
           this.notificationcount++;
         });
       }
-      if (this.showClientBoard) {
+      if ((this.showClientBoard)||(this.showuserBoard)) {
         this.webSocketService.Userchannel(this.username);
         this.webSocketService.Privatechannel(this.username);
         this.webSocketService.getUsersNotification().subscribe((message) => {

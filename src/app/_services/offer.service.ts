@@ -32,6 +32,11 @@ export class OfferService {
       .get<Offer>(this.endpoint + '/get-Offer/' + id)
       .pipe(retry(1), catchError(this.processError));
   }
+  getSingleOfferbyname(offername: any): Observable<any> {
+    return this.httpClient
+      .get<any>(this.endpoint + '/get-Offerbyname/' + offername)
+      .pipe(retry(1), catchError(this.processError));
+  }
   addOffer(data: any): Observable<any> {
     return this.httpClient
       .post<Offer>(

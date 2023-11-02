@@ -33,6 +33,7 @@ export class DetailComponent implements OnInit {
   currentUser: any;
   content?: string;
   user :any = { username :'' , firstname :'' , lastname :'' , phone :'' ,address :'' , email :'', image :'' } 
+  offer :any ;
   constructor(private commandeService: CommandeService,
     private router: Router,
     private route: ActivatedRoute,
@@ -69,6 +70,7 @@ export class DetailComponent implements OnInit {
       this.commande.datec = formatedDatec;
       this.form.status = this.commande.status;
       this.fetchoneuser(this.commande.username);
+      this.fetchoneservice(this.commande.offername);
 
     });
 
@@ -77,6 +79,12 @@ export class DetailComponent implements OnInit {
     return this.userService.getSingleUser(username).subscribe((res: {}) => {
       this.user = res;
       console.log(this.user)
+    });
+  }
+  fetchoneservice(offername : any) {
+    return this.offerService.getSingleOfferbyname(offername).subscribe((res: {}) => {
+      this.offer = res;
+      console.log(this.offer)
     });
   }
   onsubmite() {

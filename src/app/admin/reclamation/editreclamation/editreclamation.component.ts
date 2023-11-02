@@ -49,7 +49,7 @@ export class EditreclamationComponent implements OnInit {
   onsubmite() {
     console.log(this.status);
       if (this.status !== '') {
-        if (confirm("Are you sure to  " + this.status + " this commande")) {
+        if (confirm("Are you sure to  " + this.status + " this claim")) {
         this.reclamationService.processreclamation(+this.route.snapshot.params['id'],this.status).subscribe(
           data => {
             this.webSocketService.sendPrivateNotification(this.reclamation.username, " your complaint has been processed", this.reclamation.username);

@@ -47,8 +47,8 @@ export class UserComponent implements OnInit {
   }
   Delete(username: any){
     return this.userService.deleteUser(username).subscribe((res: {}) => {
-     
+      window.location.reload();
     });
-    this.fetchUsers() ; 
+   
   }
 }
