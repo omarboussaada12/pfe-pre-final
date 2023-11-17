@@ -15,20 +15,19 @@ import { WebSocketService } from 'src/app/web-socket.service';
   styleUrls: ['./addoffer.component.css']
 })
 export class AddofferComponent implements OnInit {
+  form: any = {
+    offername: "",
+    prixunit: "",
+    description: "",
+    file: null
+  };
   imageSrc: string = "";
-  offer : any = {name:'' , prixunit:'', description:'' };
   currentFile?: any;
   imageadded: boolean =false ;
   isSuccessful:boolean=false;
-  isSuccessfulimage:boolean=false;
+  isnotSuccessful:boolean=false;
   errorMessage:any;
-  myForm = new FormGroup({
-   offername: new FormControl('', [Validators.required, Validators.minLength(5)]),
-   prixunit: new FormControl('', [Validators.required]),
-   description: new FormControl('', [Validators.required]),
-   file: new FormControl('', [Validators.required]),
-   fileSource: new FormControl('', [Validators.required])
- });
+ 
  
  constructor(private http: HttpClient,
    private offerService : OfferService,
@@ -37,54 +36,52 @@ export class AddofferComponent implements OnInit {
   ngOnInit(): void {
   }
    
- get f(){
-   return this.myForm.controls;
- }
   
- onFileChange(event:any) {
-  this.imageadded = true;
-   const reader = new FileReader();
-   if(event.target.files && event.target.files.length) {
-     const [file] = event.target.files;
-     this.currentFile =file ;
-     console.log(this.currentFile);
-     reader.readAsDataURL(file);
-   
-     reader.onload = () => {
-  
-       this.imageSrc = reader.result as string;
-    
-       this.myForm.patchValue({
-         fileSource: reader.result
-       });
-  
-     };
-  
-   }
- }
-  
- submit(){
-  
-  this.offer.name = this.myForm.value.offername;
-  this.offer.prixunit = this.myForm.value.prixunit;
-  this.offer.description = this.myForm.value.description;
-  const formData: FormData = new FormData();
-  formData.append('file', this.currentFile);
-  this.offer.image = formData ;
-  if(this.imageadded === false)
-  {
-    confirm("you need to select an image for this service");
-  }else{
-    this.offerService.addOffer(this.offer).subscribe(
-      data => {
-        this.offerService.offerimage(this.offer.name,this.currentFile).subscribe(
-          data => { 
-          }
-        );
-      }
-    );
-    this.webSocketService.sendNotificationUsers(" New service have been added ");
-    this.router.navigate(['admin/service/'])
-  }
- }
+ onFileChange(event: any) {
+  const file = event.target.files[0];
+  this.form.file = file;
+  this.currentFile =file ;
+  const reader = new FileReader();
+  reader.onload = () => {
+    this.imageSrc = reader.result as string;
+  };
+  reader.readAsDataURL(file);
 }
+submit() {
+    if (!this.form.offername || !this.form.prixunit || !this.form.description || !this.form.file) {
+      console.error('Please fill in all fields and select an image.');
+      this.isnotSuccessful =true;
+      this.isSuccessful =false;
+      return  this.errorMessage = 'Please fill in all fields and select an image.';
+    }else
+    {
+      const formData: FormData = new FormData();
+      formData.append('file', this.currentFile);
+      const offer = {
+        name: this.form.offername,
+        prixunit: this.form.prixunit,
+        description: this.form.description,
+      
+      };
+      this.offerService.addOffer(offer).subscribe(
+        data => {
+          this.offerService.offerimage(offer.name,this.currentFile).subscribe(
+            data => { 
+              this.isnotSuccessful =false;
+              this.isSuccessful =true;
+              this.webSocketService.sendNotificationUsers(" New service have been added ");
+              this.router.navigate(['admin/service/'])
+            }
+          );
+        },
+        err => {
+          this.isnotSuccessful =true;
+          this.isSuccessful =false;
+          this.errorMessage = err.error.message;
+        }
+      );
+     
+    }
+    }
+   
+ }

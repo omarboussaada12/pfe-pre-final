@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule ,NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -70,7 +72,9 @@ import { EditreclamationComponent } from './admin/reclamation/editreclamation/ed
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    NgbDropdownModule
   ],
   providers: [authInterceptorProviders , DatePipe , WebSocketService],
   bootstrap: [AppComponent]

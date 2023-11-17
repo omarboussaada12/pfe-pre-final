@@ -14,7 +14,11 @@ export class UserComponent implements OnInit {
   currentUser: any;
   show:boolean=false;
   Users :any =[] ;
-
+  page: number =1;
+  count: number = 0 ;
+  tableSize: number = 5;
+  tableSizes: any = [5, 10, 15, 20];
+ 
   constructor(private userService: UserService,
     private token: TokenStorageService,
     private router: Router) { }
@@ -26,6 +30,7 @@ export class UserComponent implements OnInit {
        this.content = data;
        this.show=true;
        this.fetchUsers();
+       this.count = Math.ceil(this.Users.length / this.tableSize);
       },
       err => {
         this.content = JSON.parse(err.error).message;
@@ -37,6 +42,7 @@ export class UserComponent implements OnInit {
   fetchUsers() {
     return this.userService.getUsers().subscribe((res: {}) => {
       this.Users = res;
+     
     });
   }
   adduser(){
@@ -51,4 +57,14 @@ export class UserComponent implements OnInit {
     });
    
   }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.Users();
+   }
+   onTableSizechange(event: any): void {
+     this.tableSize - event.target.value;
+     this.page = 1;
+    this.Users();
+   }
+   
 }

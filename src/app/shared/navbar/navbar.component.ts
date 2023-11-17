@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   messages: String[] = [];
+  isProfileDropdownOpen: boolean = false;
 
   title(title: any) {
     throw new Error('Method not implemented.');
@@ -50,20 +51,26 @@ export class NavbarComponent implements OnInit {
       if (this.showAdminBoard) {
         this.webSocketService.Adminchannel(this.username);
         this.webSocketService.getAdminsNotification().subscribe((message) => {
-          this.messages.unshift(message.text);
-          this.notificationcount++;
+          if (message && message.text) {
+            this.messages.unshift(message.text);
+            this.notificationcount++;
+          }
         });
       }
       if ((this.showClientBoard)||(this.showuserBoard)) {
         this.webSocketService.Userchannel(this.username);
         this.webSocketService.Privatechannel(this.username);
         this.webSocketService.getUsersNotification().subscribe((message) => {
-          this.messages.unshift(message.text);
-          this.notificationcount++;
+          if (message && message.text) {
+            this.messages.unshift(message.text);
+            this.notificationcount++;
+          }
         });
         this.webSocketService.getPrivateNotification().subscribe((message) => {
-          this.messages.unshift(message.text);
-          this.notificationcount++;
+          if (message && message.text) {
+            this.messages.unshift(message.text);
+            this.notificationcount++;
+          }
         });
       }
 
@@ -128,5 +135,8 @@ export class NavbarComponent implements OnInit {
     else {
       return false;
     }
+  }
+  toggleProfileDropdown() {
+    this.isProfileDropdownOpen = !this.isProfileDropdownOpen;
   }
 }

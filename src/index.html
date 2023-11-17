@@ -15,8 +15,9 @@
   <!-- Fonts 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
   <!-- Icons -->
-  <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="./assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ 
+  <link href="./../assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="./../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- adeed -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -25,12 +26,24 @@
 
 </head>
 
-<body>
+<body >
   <app-root></app-root>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-    crossorigin="anonymous"></script>
+ 
+  <script>
+    // Override console functions
+    const blockConsole = () => {
+      const consoleMethods = ['log', 'warn', 'error', 'info', 'debug'];
   
+      consoleMethods.forEach(method => {
+        console[method] = () => {
+          // Block or log as needed
+        };
+      });
+    };
+  
+    // Call the function to block the console
+    blockConsole();
+  </script>
 </body>
 
 </html>

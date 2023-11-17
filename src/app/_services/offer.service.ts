@@ -38,15 +38,10 @@ export class OfferService {
       .pipe(retry(1), catchError(this.processError));
   }
   addOffer(data: any): Observable<any> {
-    return this.httpClient
-      .post<Offer>(
-        this.endpoint + '/add-Offer',
-        JSON.stringify(data),
-        this.httpHeader
-      )
+    return this.httpClient.post<Offer>( this.endpoint + '/add-Offer',JSON.stringify(data),this.httpHeader)
      
   }
-  offerimage(offername: any, file: File): Observable<HttpEvent<any>> {
+  offerimage(offername: any, file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
     const req = new HttpRequest('PUT', `${this.endpoint}/offer-image/` + offername, formData, {

@@ -31,7 +31,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="inner-box" *ngFor="let reclamation of reclamtions ; index as i" >
+                                    <tr class="inner-box" *ngFor="let reclamation of reclamtions | paginate:{itemsPerPage: tableSize,
+                                        currentPage: page, totalItems:count }; let i = index">
                                         <th scope="row">
                                             <div class="event-date">
                                                 <span>{{i+1}}</span>
@@ -73,6 +74,12 @@
                                    
                                 </tbody>
                             </table>
+                            <br><br>
+                            <pagination-controls class="d-flex justify-content-center"
+                            previousLabel="Prev" 
+                            nextLabel="Next" 
+                            (pageChange)="onTableDataChange($event)">
+                            </pagination-controls>
                         </div>
                     </div>
                    

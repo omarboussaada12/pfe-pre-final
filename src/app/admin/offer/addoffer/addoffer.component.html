@@ -2,51 +2,36 @@
     <header class="jumbotron">
 
     </header>
-
     <h1>Add a new service</h1>
-
-    <form [formGroup]="myForm" (ngSubmit)="submit()">
-
-        <div class="form-group">
-            <label for="offername">Service name</label>
-            <input formControlName="offername" id="offername" type="text" class="form-control">
-            <div *ngIf="f.offername.touched && f.offername.invalid" class="alert alert-danger">
-                <div *ngIf="f.offername.errors && f.offername.errors.required">Service name is required.</div>
-                <div *ngIf="f.offername.errors && f.offername.errors.minlength">Service name should be 4 character.
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="prixunit">prix for a unit</label>
-            <input formControlName="prixunit" id="prixunit" type="text" class="form-control">
-            <div *ngIf="f.prixunit.touched && f.prixunit.invalid" class="alert alert-danger">
-                <div *ngIf="f.prixunit.errors && f.prixunit.errors.required">Name is required.</div>
-                <div *ngIf="f.prixunit.errors && f.prixunit.errors.minlength">Name should be 3 character.</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="description">description</label>
-            <textarea rows="5" cols="10" formControlName="description" id="description" type="text"
-                class="form-control">
-        <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
-            <div *ngIf="f.description.errors && f.description.errors.required">Name is required.</div>
-            <div *ngIf="f.description.errors && f.description.errors.minlength">Name should be 3 character.</div>
-        </div>
-    </textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="file">image </label>
-            <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
-            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
-            </div>
-        </div>
-
-        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
-        <br>
-        <button class="btn btn-primary" type="submit">Submit</button>
+  
+    <form (ngSubmit)="submit()">
+  
+      <div class="form-group">
+        <label for="offername">Service name</label>
+        <input [(ngModel)]="form.offername" id="offername" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="prixunit">prix for a unit</label>
+        <input [(ngModel)]="form.prixunit" id="prixunit" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <textarea rows="5" [(ngModel)]="form.description" id="description" type="text" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="file">image </label>
+        <input id="file" type="file" class="form-control" (change)="onFileChange($event)">
+      </div>
+      <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+      <br>
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <div *ngIf="isnotSuccessful" class="alert alert-warning text-center">
+      Adding new service failed!<br />{{ errorMessage }}
+    </div>
+    <div *ngIf="isSuccessful" class="alert alert-success text-center">
+    </div>
     </form>
     <br>
     <br>
-</div>
+  </div>
+  

@@ -16,6 +16,10 @@ export class ReclamationComponent implements OnInit {
   isadmin:boolean = false;
   currentUser: any;
   show:boolean=false;
+  page: number =1;
+  count: number = 0 ;
+  tableSize: number = 10;
+  tableSizes: any = [5, 10, 15, 20];
 
   constructor( private userService: UserService,
     private token: TokenStorageService,
@@ -47,11 +51,13 @@ export class ReclamationComponent implements OnInit {
   fetchreclamationU(username: any) {
     return this.reclamtionService.getreclamationuser(username).subscribe((res: {}) => {
       this.reclamtions = res;
+      this.count = this.reclamtions.length/this.tableSize;
     });
   }
   fetchreclamationA() {
     return this.reclamtionService.getallreclamation().subscribe((res: {}) => {
       this.reclamtions = res;
+      this.count = this.reclamtions.length/this.tableSize;
     });
   }
   addreclamation()
@@ -62,5 +68,13 @@ export class ReclamationComponent implements OnInit {
   {
     this.router.navigate(['reclamation/process',id]);
   }
-
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.reclamtions();
+   }
+   onTableSizechange(event: any): void {
+     this.tableSize - event.target.value;
+     this.page = 1;
+    this.reclamtions();
+   }
 }

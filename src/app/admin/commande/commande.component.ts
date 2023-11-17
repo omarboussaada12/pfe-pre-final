@@ -17,6 +17,10 @@ export class CommandeComponent implements OnInit {
   isadmin:boolean = false;
   currentUser: any;
   show:boolean=false;
+  page: number =1;
+  count: number = 0 ;
+  tableSize: number = 10;
+  tableSizes: any = [5, 10, 15, 20];
 
   constructor(
     private userService: UserService,
@@ -40,6 +44,7 @@ export class CommandeComponent implements OnInit {
        this.fetchcommandeU(currentUser.username);
 
        }
+       this.count = Math.ceil(this.commandes.length / this.tableSize);
       },
       err => {
         this.content = JSON.parse(err.error).message;
@@ -54,6 +59,7 @@ export class CommandeComponent implements OnInit {
   fetchcommandeA() {
     return this.commandeService.getCommandesadmin().subscribe((res: {}) => {
       this.commandes = res;
+    
      
     });
   }
@@ -83,5 +89,15 @@ export class CommandeComponent implements OnInit {
   {
     this.router.navigate(['user/commande/add']);
   }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.commandes();
+   }
+   onTableSizechange(event: any): void {
+     this.tableSize - event.target.value;
+     this.page = 1;
+    this.commandes();
+   }
 
 }
