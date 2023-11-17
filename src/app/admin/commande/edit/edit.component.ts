@@ -1,10 +1,8 @@
-import { DatePipe, formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Commande } from 'src/app/_model/Commande';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommandeService } from 'src/app/_services/commande.service';
 import { OfferService } from 'src/app/_services/offer.service';
-import { isDate } from 'util/types';
 
 @Component({
   selector: 'app-edit',

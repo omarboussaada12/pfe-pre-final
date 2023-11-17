@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Location, PopStateEvent } from '@angular/common';
+import { Router, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router';
+import { Location ,PopStateEvent } from '@angular/common';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { timeStamp } from 'console';
 import { WebSocketService } from 'src/app/web-socket.service';
 import { delay } from 'rxjs';
+
 
 @Component({
   selector: 'app-navbar',
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
   username?: string;
   notificationcount = 0;
   showNotifications = false;
+  
   constructor(public location: Location,
     private router: Router,
     private tokenStorageService: TokenStorageService,
