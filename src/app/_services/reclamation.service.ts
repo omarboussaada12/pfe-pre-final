@@ -8,7 +8,7 @@ import { Commande } from '../_model/Commande';
 })
 export class ReclamationService {
 
-  endpoint = 'broken-birth-production.up.railway.app';
+  endpoint = 'http://localhost:8080';
   constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
