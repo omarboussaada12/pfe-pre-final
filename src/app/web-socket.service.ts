@@ -17,7 +17,7 @@ export class WebSocketService {
   constructor(private httpClient: HttpClient) {
 
   }
-  endpoint = 'http://localhost:8080';
+  endpoint = 'https://broken-birth-production.up.railway.app';
   public frame: any;
   getNotification(username: any): Observable<any> {
     return this.httpClient

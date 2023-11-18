@@ -10,7 +10,7 @@ import { Offer } from '../_model/Offer';
 })
 export class OfferService {
 
-  endpoint = 'http://localhost:8080';
+  endpoint = 'https://broken-birth-production.up.railway.app';
   constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
