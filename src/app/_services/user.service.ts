@@ -9,7 +9,7 @@ import { User } from '../_model/User';
   providedIn: 'root'
 })
 export class UserService {
-  endpoint = 'broken-birth-production.up.railway.app';
+  endpoint = 'https://broken-birth-production.up.railway.app';
   constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
