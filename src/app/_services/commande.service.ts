@@ -11,7 +11,7 @@ import { Commande } from '../_model/Commande';
 
 export class CommandeService {
 
-  endpoint = 'https://broken-birth-production.up.railway.app';
+  endpoint = 'broken-birth-production.up.railway.app';
   constructor(private httpClient: HttpClient) { }
   httpHeader = {
     headers: new HttpHeaders({
